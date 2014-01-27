@@ -1,0 +1,4 @@
+class ChangeTimeTypeToInteger < ActiveRecord::Migration
+  def change
+  end
+end

@@ -1,0 +1,32 @@
+<header>
+<h3>ÚLTIMAS sesiones de entrenamiento</h3>
+</header>
+
+<!-- Inicio Content -->
+<div id="content">
+    <% @trainings.each do |training| %>
+      <div class="entreno">
+        <h4 class="date"><%= training.id %></h4>
+	<h4 class="date"><%= training.date %></h4>
+        <h4 class="kms"><%= training.kms %></h4>
+        <% if training.time.empty? %>
+        <h4 class="time">Tiempo NO registrado</h4>
+        <% else %>
+        <h4 class="time"><%= training.time %></h4>
+        <% end %>
+	<!--<a class="enlace"><%= link_to training.runner.name, training.runner %></td>
+    <% corredor = Runner.find(training.runner_id)%> 
+	<td><%= link_to corredor.name, corredor %></td>  FALTA METER LA COLUMNA DEL RUNNER -->
+        <p class="description"><%= training.description %></p>
+        <% if training.comments.empty? %>
+        <p class="comments">No hay comentarios</p>
+        <% else %>
+        <p class="comments"><%= training.comments %></p>
+        <% end %>
+      </div>
+    <% end %>
+</div>
+<!-- Fin Content -->
+<div id="nuevorunner">
+  <%= link_to 'Nuevo runner', new_runner_path %>
+</div>

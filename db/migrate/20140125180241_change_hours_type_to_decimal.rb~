@@ -1,0 +1,4 @@
+class ChangeHoursTypeToDecimal < ActiveRecord::Migration
+  def change
+  end
+end

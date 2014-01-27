@@ -1,6 +1,6 @@
 RunningProject::Application.routes.draw do
   #resources :trainings
-  root 'trainings#main'
+  root 'runners#index'
 
   resources :runners do
     resources :trainings

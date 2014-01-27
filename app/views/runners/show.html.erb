@@ -1,0 +1,58 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @runner.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @runner.email %>
+</p>
+
+<p>
+  <strong>Bio:</strong>
+  <%= @runner.bio %>
+</p>
+
+<p>
+  <strong>Edad:</strong>
+  <%= @runner.age %>
+</p>
+
+<p>
+  <strong>País:</strong>
+  <%= @runner.country %>
+</p>
+
+<div class="avatar">
+  <%= image_tag @runner.avatar.url(:large) %>
+</div>
+
+<%= link_to 'Editar', edit_runner_path(@runner) %> |
+<%= link_to 'Ver atletas', runners_path %>
+
+<h3>Total Sesiones: <%= @total %></h3>
+<h3>Últimas <%= @limite %> sesiones de entrenamiento</h3>
+<%= link_to 'Ver todas', runner_trainings_path(@runner) %>
+<%= link_to 'Nuevo entrenamiento', new_runner_training_path(@runner) %>
+
+<% if @total >0 %>
+<table>
+  <% @entrenos.each do |entreno| %>
+    <% if entreno.kms > 15 %>
+      <tr class="long">
+    <% else %>
+      <tr class="short">
+    <% end %>
+        <td><%= entreno.date %></td>
+        <td><%= entreno.kms %></td>
+        <td><%= entreno.time %></td>
+        <td><%= entreno.description %></td>
+        <td><%= entreno.comments %></td>
+      </tr>
+    <% end %>
+</table>
+<% else %>
+  <p>No hay sesiones</p>
+<% end %>

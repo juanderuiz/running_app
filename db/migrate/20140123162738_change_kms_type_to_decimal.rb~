@@ -1,0 +1,4 @@
+class ChangeKmsTypeToDecimal < ActiveRecord::Migration
+  def change
+  end
+end
