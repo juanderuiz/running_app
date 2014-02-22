@@ -19,7 +19,7 @@
   <tbody>
     <% @runners.each do |runner| %>
       <tr>
-        <td><%= link_to runner.name, runner %></td>
+        <td><%= link_to runner.name.titleize, runner %></td>
         <td><%= runner.email %></td>
         <td><%= runner.bio %></td>
         <td><%= runner.age %></td>

@@ -1,10 +1,14 @@
 RunningProject::Application.routes.draw do
+  resources :shoes
+
   #resources :trainings
   root 'trainings#main'
 
   resources :runners do
     resources :trainings
   end
+
+  resources :tipos
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

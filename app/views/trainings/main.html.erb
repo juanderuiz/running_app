@@ -2,29 +2,40 @@
 <h3>ÚLTIMAS sesiones de entrenamiento</h3>
 </header>
 
-<!-- Inicio Content -->
+<!-- Inicio Content, habrá que eliminarlo o ponerlo en layout/application.html.erb -->
 <div id="content">
+   <% cache ['content', Training.latest] do %>
     <% @trainings.each do |training| %>
-      <div class="entreno">
+     <% cache ['training', training] do %>
+      <%= div_for training do %>
         <h4 class="date"><%= training.id %></h4>
-	<h4 class="date"><%= training.date %></h4>
-        <h4 class="kms"><%= training.kms %></h4>
+	      <h4 class="date"><%= training.date %></h4>
+        <h4 class="kms"><%= sprintf("%0.02f", training.kms) %></h4>
         <% if !training.time %>
-        <h4 class="time">Tiempo NO registrado</h4>
+          <h4 class="time">Tiempo NO registrado</h4>
         <% else %>
-        <h4 class="time"><%= training.time %></h4>
+          <h4 class="time"><%= training.time %> segundos</h4>
         <% end %>
-	<!--<a class="enlace"><%= link_to training.runner.name, training.runner %></td>
-    <% corredor = Runner.find(training.runner_id)%> 
-	<td><%= link_to corredor.name, corredor %></td>  FALTA METER LA COLUMNA DEL RUNNER -->
+        <% if training.runner %>
+	        <a class="enlace"><%= link_to training.runner.name.titleize, training.runner %></a>
+        <% else %>
+          <p>Atleta borrado</p>
+        <% end %>
+        <% if training.shoe %>
+	        <a class="enlace"><%= link_to training.shoe.nombre.titleize, training.shoe %></a>
+        <% else %>
+          <p>Unknown shoes</p>
+        <% end %>
         <p class="description"><%= training.description %></p>
         <% if training.comments.empty? %>
-        <p class="comments">No hay comentarios</p>
+          <p class="comments">No hay comentarios</p>
         <% else %>
-        <p class="comments"><%= training.comments %></p>
+          <p class="comments"><%= truncate(training.comments, length: 18, separator: ' ', omission: '...') %></p>
         <% end %>
-      </div>
+      <% end %>
+     <% end %> <!-- cache de cada training -->
     <% end %>
+   <% end %>
 </div>
 <!-- Fin Content -->
 <div id="nuevorunner">

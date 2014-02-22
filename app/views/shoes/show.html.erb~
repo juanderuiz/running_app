@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Runner:</strong>
+  <%= @corredor.name %>
+</p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @shoe.nombre %>
+</p>
+
+<p>
+  <strong>Kms totales:</strong>
+  <%= @shoe.totalkms %>
+</p>
+
+<div class="avatar">
+  <%= image_tag @shoe.avatar.url(:medium) %>
+</div>
+
+<%= link_to 'Editar', edit_shoe_path(@shoe) %> |
+<%= link_to 'Ver todas', shoes_path %>
+

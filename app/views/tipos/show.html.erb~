@@ -1,0 +1,6 @@
+<h1>Tipo de entrenamiento/Carrera</h1>
+
+<h3><%= @tipo.nombre %></h3>
+<h3><%= @tipo.descripcion %></h3>
+
+<%= link_to 'Ver todos', tipos_path %>

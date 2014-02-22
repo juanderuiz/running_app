@@ -16,23 +16,31 @@ $colorEnlace: #eee;
    background-color:yellow;
 }
 
-.entreno{
+.training{
   float:left;       /* y si probamos a remover los float como en el CSS Cross Country?*/
   width:32%;
   color:#234;
-  background-color:red;
+  background-color:#456;
   border: 1px dashed black;
   margin-left:1%;
-  margin-bottom:10px;
+  margin-bottom:5px;
   height:210px;
-}
 
-.entreno h4{
-
-}
-
-.entreno p{
-
+  h4{
+    float:left;
+    width:48%;
+    background-color:red;
+  }
+  a{
+    float:left;
+    width:46%;
+    color:$colorEnlace;
+  }
+  p{
+    float:left;
+    width:45%;
+    background-color:green;
+  }
 }
 
 .comments{

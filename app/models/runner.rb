@@ -3,7 +3,8 @@ class Runner < ActiveRecord::Base
 	validates :bio, :length => {:maximum => 140}
 	validates :email, :uniqueness => true
         validates :age, :presence => true, :length => { :is => 2 }, :numericality => { :only_integer => true, :greater_than => 18 }
-	has_many :trainings
+	has_many :trainings,  dependent: :destroy
+        has_many :shoes, dependent: :destroy
 
         #specify that the avatar is a paperclip file attachment
   #specify additional styles that you want to use in views or eslewhere

@@ -24,7 +24,6 @@
         <td><%= runner.bio %></td>
         <td><%= runner.age %></td>
         <td><%= runner.country %></td>
-        <td><%= link_to 'Show', runner %></td>
         <td><%= link_to 'Edit', edit_runner_path(runner) %></td>
         <td><%= link_to 'Destroy', runner, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

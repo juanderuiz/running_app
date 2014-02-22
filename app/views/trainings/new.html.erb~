@@ -1,5 +1,13 @@
-<h1>New training</h1>
+<h1>New training for <%= @runner.name.titleize %>-<%= @runner.id %></h1>
+
+<% @my_shoes=[] %>
+<% all_shoes = Shoe.all %>
+<% all_shoes.each do |s|  %>
+  <% if (s.runner_id == @runner.id)  %>
+    <% @my_shoes.push(s) %>
+  <% end %>
+<% end %>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', runner_trainings_path %>
+<%= link_to "Entrenos de #{@runner.name}", runner_trainings_path(@runner) %>

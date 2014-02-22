@@ -8,6 +8,7 @@
       <th>Fecha</th>
       <th>Distancia</th>
       <th>Tiempo</th>
+      <th>Zapatillas</th>
       <th>Descripcion</th>
       <th>Comentarios</th>
       <th></th>
@@ -18,16 +19,21 @@
 
   <tbody>
     <% @trainings.each do |training| %>
+    <!-- Buscamos la zapatilla de cada entrenamiento -->
+      <% @zapatilla = Shoe.where(:id == training.shoe_id).first %>
       <tr>
 	<td><%= training.date %></td>
         <td><%= training.kms %></td>
         <td><%= training.time %></td>
-	 <!--<td class="enlace"><%= link_to training.runner.name, training.runner %></td>
-    <% corredor = Runner.find(training.runner_id)%> 
-	<td><%= link_to corredor.name, corredor %></td> -->
+	<% if training.shoe %>
+          <td><%= training.shoe.nombre %></td>
+        <% else %>
+          <td>undefined</td> 
+        <% end %> 
         <td><%= training.description %></td>
         <td><%= training.comments %></td>
         <td class="enlace ver"><%= link_to 'Ver', [@runner, training] %></td>
+<td class="enlace ver"><%= link_to 'Eliminar', [@runner, training], method: :delete %></td>
       </tr>
     <% end %>
   </tbody>
@@ -35,4 +41,4 @@
 
 <br>
 
-<%= link_to 'New Training', new_runner_training_path(@runner) %>
+<%= link_to 'Añadir entrenamiento', new_runner_training_path(@runner) %>

@@ -31,10 +31,20 @@
     <%= f.label :date %><br>
     <%= f.date_select :date %>
   </div>
+
+  <div class="field">
+    <%= f.label :shoe %><br>
+    <% if @my_shoes.empty?%>
+    <%= f.label "No hay zapatillas" %>
+    <% else %>
+    <%= f.collection_select :shoe_id, @my_shoes, :id, :nombre, {prompt: "Selecciona"} %>  
+    <% end %>
+  </div>
   
   <div class="field">
     <%= f.label :description %><br>
-    <%= f.text_field :description %>
+   <!-- <%= f.select :description, ['CC','Series','Competición'] %>-->
+    <%= f.collection_select :description, Tipo.all, :nombre, :nombre, {prompt: "Selecciona el tipo"} %>
   </div>
   <div class="field">
     <%= f.label :comments %><br>

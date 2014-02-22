@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140125184658) do
+ActiveRecord::Schema.define(version: 20140219154749) do
 
   create_table "runners", force: true do |t|
     t.string   "name"
@@ -27,6 +27,25 @@ ActiveRecord::Schema.define(version: 20140125184658) do
     t.datetime "avatar_updated_at"
   end
 
+  create_table "shoes", force: true do |t|
+    t.integer  "runner_id"
+    t.text     "nombre"
+    t.integer  "totalkms"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+  end
+
+  create_table "tipos", force: true do |t|
+    t.string   "nombre"
+    t.text     "descripcion"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "trainings", force: true do |t|
     t.decimal  "kms",                     precision: 5, scale: 2
     t.integer  "time",        limit: 255
@@ -36,9 +55,10 @@ ActiveRecord::Schema.define(version: 20140125184658) do
     t.string   "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "hours",       limit: 1
-    t.integer  "minutes",     limit: 2
-    t.integer  "seconds",     limit: 2
+    t.integer  "hours"
+    t.integer  "minutes"
+    t.integer  "seconds"
+    t.integer  "shoe_id"
   end
 
 end

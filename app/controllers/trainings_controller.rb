@@ -1,10 +1,10 @@
 class TrainingsController < ApplicationController
   before_action :set_training, only: [:show, :edit, :update, :destroy]
+  before_action :set_shoe, only: [:show, :edit, :update, :destroy]
   before_filter :get_runner, except: [:main]
-
-  def get_runner
-    @runner = Runner.find(params[:runner_id])
-  end
+  after_action :set_kms, only: [:create] #falta el update
+  #before_action :set_time, only: [:edit, :update]
+  #before_action :get_shoes, only: [:create, :edit, :update]
 
   def main
     @trainings = Training.order(date: :desc).limit(15)
@@ -23,9 +23,9 @@ class TrainingsController < ApplicationController
   # GET /trainings/1.json
   def show
     #@training = Training.find(params[:id])
-    @training = @runner.trainings.find(params[:id])
+    #@training = @runner.trainings.find(params[:id])
     #@corredor = Runner.find(@training.runner_id)
-    @corredor = @runner
+    #@corredor = @runner
    # render :action => 'status'
   end
 
@@ -57,10 +57,21 @@ class TrainingsController < ApplicationController
   # PATCH/PUT /trainings/1
   # PATCH/PUT /trainings/1.json
   def update
-    set_time
+    #set_time
+    tiempoActual = @training.time
+    zapatillaAnterior = @training.shoe
+    kmsActual = @training.kms
     respond_to do |format|
       if @training.update(training_params)
-        format.html { redirect_to @training, notice: 'Training was successfully updated.' }
+        tiempoNuevo = set_time #calculamos tiempo y actualizamos si cambió
+        if (tiempoNuevo != tiempoActual)
+          @training.update(training_params) 
+        end
+        zapatillaEdit = @training.shoe
+        kmsEdit = @training.kms
+        actualizarKms(zapatillaAnterior,zapatillaEdit,kmsActual,kmsEdit)
+        format.html { redirect_to [@runner,@training], notice: 'Entreno actualizado!' }
+        #format.html { redirect_to [@zapatilla], notice: 'Arrr'}
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -74,7 +85,7 @@ class TrainingsController < ApplicationController
   def destroy
     @training.destroy
     respond_to do |format|
-      format.html { redirect_to trainings_url }
+      format.html { redirect_to runner_trainings_path(@runner) }
       format.json { head :no_content }
     end
   end
@@ -85,12 +96,59 @@ class TrainingsController < ApplicationController
       @training = Training.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def training_params
-      params.require(:training).permit(:kms, :time, :date, :runner_id, :description, :comments, :hours, :minutes, :seconds)
+    def set_shoe
+      @shoe = nil #shoe is undefined
+      if @training.shoe_id
+        @shoe = Shoe.find(@training.shoe_id)
+      end     
     end
 
+    def get_runner #también selecciona sus zapatillas disponibles
+      @runner = Runner.find(params[:runner_id])
+      @my_shoes=[]
+      all_shoes = Shoe.all
+      all_shoes.each do |s|
+        if (s .runner_id == @runner.id)
+          @my_shoes.push(s) 
+        end
+      end
+    end
+
+    def actualizarKms(zAnt,zNueva,kmsAnt,kmsNuevos)
+      if (zAnt == nil) && (zNueva == nil)
+          #nada que actualizar
+      elsif (zAnt == nil) && (zNueva)
+        zNueva.totalkms += kmsNuevos
+        zNueva.save
+      elsif (zNueva == nil) && (zAnt)
+        zAnt.totalkms -= kmsAnt
+        zAnt.save
+      elsif (zAnt == zNueva) 
+        zNueva.totalkms -= kmsAnt
+        zNueva.totalkms += kmsNuevos
+        zNueva.save
+      elsif (zAnt != zNueva)
+        zAnt.totalkms -= kmsAnt
+        zNueva.totalkms += kmsNuevos
+        zAnt.save
+        zNueva.save
+      end
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def training_params
+      params.require(:training).permit(:kms, :time, :date, :runner_id, :shoe_id, :description, :comments, :hours, :minutes, :seconds)
+    end
+ 
     def set_time
       @training.time = (@training.hours*3600)+(@training.minutes*60)+@training.seconds
+    end
+
+    def set_kms
+      if @training.shoe
+        @shoe = Shoe.find(@training.shoe_id)
+        @shoe.totalkms += @training.kms
+        @shoe.save
+      end
     end
 end

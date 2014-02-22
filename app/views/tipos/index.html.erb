@@ -1,0 +1,29 @@
+<header>
+<h3>Lista de tipos</h3>
+</header>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Descripcion</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tipos.each do |tipo| %>
+      <tr>
+        <td><%= link_to tipo.nombre, tipo %></td>
+        <td><%= tipo.descripcion %></td>
+        <td><%= link_to 'Edit', edit_tipo_path(tipo) %></td>
+        <td><%= link_to 'Destroy', tipo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nuevo tipo', new_tipo_path %>

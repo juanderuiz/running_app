@@ -29,7 +29,8 @@
   <%= image_tag @runner.avatar.url(:large) %>
 </div>
 
-<%= link_to 'Editar', edit_runner_path(@runner) %> |
+<%= link_to 'Editar', edit_runner_path(@runner) %>
+<%= link_to 'Borrar atleta', @runner, method: :delete %> |
 <%= link_to 'Ver atletas', runners_path %>
 
 <h3>Total Sesiones: <%= @total %></h3>
@@ -46,7 +47,7 @@
       <tr class="short">
     <% end %>
         <td><%= entreno.date %></td>
-        <td><%= entreno.kms %></td>
+        <td><%= sprintf("%0.02f",entreno.kms) %></td>
         <td><%= entreno.time %></td>
         <td><%= entreno.description %></td>
         <td><%= entreno.comments %></td>

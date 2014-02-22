@@ -1,0 +1,7 @@
+<h1>Editing shoe</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', @shoe %> |
+<%= link_to 'Ver todas', shoes_path %>
+<%= link_to 'Eliminar', @shoe, method: :delete %>
