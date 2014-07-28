@@ -1,9 +1,5 @@
-<header>
-<h3>ÚLTIMAS sesiones de entrenamiento</h3>
-</header>
-
-<!-- Inicio Content, habrá que eliminarlo o ponerlo en layout/application.html.erb -->
-<div id="content">
+<!-- Inicio Main  -->
+<div id="main">
    <% cache ['content', Training.latest] do %>
     <% @trainings.each do |training| %>
      <% cache ['training', training] do %>
@@ -17,27 +13,27 @@
           <h4 class="time"><%= training.time %> segundos</h4>
         <% end %>
         <% if training.runner %>
-	        <a class="enlace"><%= link_to training.runner.name.titleize, training.runner %></a>
+	        <%= link_to training.runner.name.titleize, training.runner %>
         <% else %>
           <p>Atleta borrado</p>
         <% end %>
         <% if training.shoe %>
-	        <a class="enlace"><%= link_to training.shoe.nombre.titleize, training.shoe %></a>
+	        <%= link_to training.shoe.nombre.titleize, [training.runner, training.shoe] %>
         <% else %>
           <p>Unknown shoes</p>
         <% end %>
         <p class="description"><%= training.description %></p>
         <% if training.comments.empty? %>
-          <p class="comments">No hay comentarios</p>
+          <p> Sin comentarios</p>
         <% else %>
-          <p class="comments"><%= truncate(training.comments, length: 18, separator: ' ', omission: '...') %></p>
+          <a class="vercomentarios">Ver comentarios</a>
+          <!-- Comments tiene display none -->
+          <p class="comments"><%= truncate(training.comments, length: 30, separator: ' ', omission: '...') %></p>
         <% end %>
       <% end %>
      <% end %> <!-- cache de cada training -->
     <% end %>
    <% end %>
 </div>
-<!-- Fin Content -->
-<div id="nuevorunner">
-  <%= link_to 'Nuevo runner', new_runner_path %>
-</div>
+<!-- Fin Main -->
+

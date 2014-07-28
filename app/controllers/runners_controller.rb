@@ -1,5 +1,6 @@
 class RunnersController < ApplicationController
-  before_action :set_runner, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_runner!, except: [:index]
+  before_action :set_runner, only: [:show, :edit, :update, :destroy, :changepassword]
 
   # GET /runners
   # GET /runners.json
@@ -10,11 +11,18 @@ class RunnersController < ApplicationController
   # GET /runners/1
   # GET /runners/1.json
   def show
-    @limite = 10
-    @sesiones = Training.where(:runner_id => @runner.id).order(date: :desc)
-    @total = @sesiones.count(:all)
-    @entrenos = @sesiones.limit(@limite)
-    #@entrenos = Training.where(:runner_id => @runner.id).limit(@limite)
+    @limite = 0
+    @sesiones = []
+    @total = 0
+    @entrenos = []
+    if @runner
+      @limite = 10
+      @sesiones = Training.where(:runner_id => @runner.id).order(date: :desc)
+      @total = @sesiones.count(:all)
+      @entrenos = @sesiones.limit(@limite)
+      #@entrenos = Training.where(:runner_id => @runner.id).limit(@limite)
+    end
+    @training=Training.new #Para el formulario de Nuevo Entrenamiento en SHOW
   end
 
   # GET /runners/new
@@ -24,6 +32,18 @@ class RunnersController < ApplicationController
 
   # GET /runners/1/edit
   def edit
+  end
+
+  def changepassword
+    respond_to do |format|
+      if @runner.update(runner_params)
+        format.html { redirect_to @runner, notice: 'Runner was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @runner.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # POST /runners
@@ -69,11 +89,12 @@ class RunnersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_runner
-      @runner = Runner.find(params[:id])
+      @runner = Runner.find_by_id(params[:id])
+      @my_shoes = Shoe.where(runner_id: params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def runner_params
-      params.require(:runner).permit(:name, :email, :bio, :age, :country, :avatar)
+      params.require(:runner).permit(:name, :bio, :age, :country, :avatar, :email, :password, :password_confirmation)
     end
 end

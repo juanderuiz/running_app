@@ -11,3 +11,111 @@
  *= require_self
  *= require_tree .
  */
+
+ /*  RESET */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+margin: 0;
+padding: 0;
+border: 0;
+font-size: 100%;
+font: inherit;
+vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+display: block;
+}
+body {
+line-height: 1;
+}
+ol, ul {
+list-style: none;
+}
+blockquote, q {
+quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+content: '';
+content: none;
+}
+table {
+border-collapse: collapse;
+border-spacing: 0;
+}
+
+/*  Fin RESET */ 
+
+body{
+  color:#fff;
+}
+
+#header {
+  float:left;
+  width:100%;
+  margin-top: 20px;
+  height: 270px;
+  margin-bottom: 0px;
+}
+
+#header figure{
+	float:left;
+	margin-left: 4%;
+	margin-right: 2%;
+	width: 30%;
+}
+
+#header #mainlink{
+	width: 50%;
+	height: 100px;
+	font-size: 40px;
+  	float:left;
+  	color:#fff;
+  	text-align: center;
+  	padding-top: 40px;
+}
+
+#header #mainlink a{
+     color:#fff;
+     text-decoration: none;
+}
+
+#header #menuinicio{
+	float:right;
+	width: 10%;
+	height: 270px;
+	font-size: 14px;
+}
+
+#header #menuinicio a{
+	width:95%;
+	color: white;
+	float:left;
+	margin-bottom: 5px;
+	text-decoration: none;
+
+}
+
+footer{
+  float:left;
+  width: 100%;
+  text-align: center;
+  font-size: 15px;
+  color:#fff;
+  text-decoration: none;
+  margin:20px 0;
+}

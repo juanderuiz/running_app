@@ -1,14 +1,20 @@
 RunningProject::Application.routes.draw do
-  resources :shoes
+  devise_for :runners, controllers: { registrations: 'registrations'}
 
   #resources :trainings
   root 'trainings#main'
 
   resources :runners do
+    member do
+      get 'changepassword'
+    end
     resources :trainings
+    resources :shoes
   end
 
   resources :tipos
+
+  get 'allshoes' => 'shoes#main'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

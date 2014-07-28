@@ -1,0 +1,2 @@
+$('div#shoes').append("<%= escape_javascript(render @shoe) %>");
+$('div#<%= dom_id(@shoe) %>').fadeIn();

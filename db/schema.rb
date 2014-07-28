@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140219154749) do
+ActiveRecord::Schema.define(version: 20140301113551) do
 
   create_table "runners", force: true do |t|
     t.string   "name"
@@ -25,12 +25,24 @@ ActiveRecord::Schema.define(version: 20140219154749) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
   end
+
+  add_index "runners", ["email"], name: "index_runners_on_email", unique: true
+  add_index "runners", ["reset_password_token"], name: "index_runners_on_reset_password_token", unique: true
 
   create_table "shoes", force: true do |t|
     t.integer  "runner_id"
     t.text     "nombre"
-    t.integer  "totalkms"
+    t.decimal  "totalkms",            precision: 4, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "avatar_file_name"

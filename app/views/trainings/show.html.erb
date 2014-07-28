@@ -23,7 +23,7 @@
 <p>
   <strong>Zapatillas:</strong>
   <% if @training.shoe %>
-    <%= link_to @shoe.nombre, @shoe %>
+    <%= link_to @shoe.nombre, [@runner, @shoe] %>
   <% else %>
     undefined
   <% end %>

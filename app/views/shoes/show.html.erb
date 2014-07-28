@@ -1,28 +1,57 @@
-<p id="notice"><%= notice %></p>
+<!-- Shoe -->
+<div id="shoe">
+  
+<% if @shoe.totalkms <300 %>
+  <div id="shoedata" class="desgastebajo">
+<% elsif @shoe.totalkms <550 %>
+  <div id="shoedata" class="desgastemedio">
+<% else %>
+  <div id="shoedata" class="desgastealto">
+<% end %>
 
-<p>
-  <strong>Runner:</strong>
-  <%= @corredor.name %>
-</p>
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Nombre:</strong>
-  <%= @shoe.nombre %>
-</p>
+  <p>
+    <strong>Runner:</strong>
+    <%= @runner.name %>
+  </p>
 
-<p>
-  <strong>Kms totales:</strong>
-  <%= @shoe.totalkms %>
-</p>
+  <p>
+    <strong>Nombre:</strong>
+    <%= @shoe.nombre %>
+  </p>
 
-<div class="avatar">
-  <% if @shoe.avatar %>
-    <%= image_tag @shoe.avatar.url(:medium) %>
-  <% else %>
-    <p>Foto no disponible</p>
-  <% end %>
+  <p>
+    <strong>Kms totales:</strong>
+    <%= sprintf("%0.02f", @shoe.totalkms) %>
+  </p>
+
+  <p id="listaentrenos">
+    <strong>Entrenamientos:</strong>
+    <%= @totalentrenos %>
+  </p>
+   <div id="entrenamientos_zapatilla">
+      <% @entrenamientos.each do |training| %>
+        <p><%= training.date %></p>
+        <p><%= sprintf("%0.02f",training.kms) %></p>
+        <p><%= training.time %></p>
+        <p><%= training.description %></p>
+      <% end %>
+   </div>
+  </div>
+
+  <div class="shoeavatar">
+    <% if @shoe.avatar %>
+      <%= image_tag @shoe.avatar.url(:medium) %>
+    <% else %>
+      <p>Foto no disponible</p>
+    <% end %>
+  </div>
+
 </div>
+<!-- Fin Shoe -->
 
-<%= link_to 'Editar', edit_shoe_path(@shoe) %> |
-<%= link_to 'Ver todas', shoes_path %>
-
+<div class="nuevo">
+  <%= link_to 'Editar', edit_runner_shoe_path(@runner, @shoe) %> |
+  <%= link_to 'Ver todas', runner_shoes_path %>
+</div>

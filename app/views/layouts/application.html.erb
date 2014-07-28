@@ -7,11 +7,40 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<header>
-	<h1>The Running Project v1.0</h1>
-</header>
+<section id="header">
+  <figure id="logo">
+    <%= image_tag "berlin.jpg" %>
+  </figure>
+  <h2 id="mainlink">
+	  <%= link_to 'The Running Project v1.0', root_url %>
+  </h2>
+
+  <nav id="menuinicio">
+  <% if runner_signed_in? %>
+    <p>Bienvenido <%= current_runner.name %></p>
+    <%= link_to 'Cerrar Sesión', destroy_runner_session_path, method: :delete %>
+    <%= link_to 'Mi perfil', runner_path(current_runner) %>
+    <%= link_to 'Nuevo entrenamieto', runner_trainings_path(current_runner) %>
+    <%= link_to 'Mis zapatillas', runner_shoes_path(current_runner) %>
+  <% else %>
+    <%= link_to 'Iniciar Sesión', new_runner_session_path %>
+    <%= link_to 'Crear Cuenta', new_runner_registration_path %>  
+  <% end %>
+
+  <%= link_to 'Nuestros Runners', runners_path %>
+
+  </nav>
+
+</section>
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
 
 <%= yield %>
+
+<footer>
+  <h4>Code by <a href="http://www.elyunquevirtual.com">ElYunqueVirtual</a></h4>
+</footer>
 
 </body>
 </html>

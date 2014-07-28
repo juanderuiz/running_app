@@ -1,0 +1,40 @@
+<% if @shoes.empty? %>
+
+  <h1>No shoes Available!</h1>
+
+<% else %>
+
+<h1>Listing shoes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Runner</th>
+      <th>Nombre</th>
+      <th>Totalkms</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @shoes.each do |shoe| %>
+      <tr>
+        <td><%= link_to shoe.runner.name.titleize, shoe.runner %></td>
+        <td><%= shoe.nombre %></td>
+        <td><%= sprintf("%0.02f", shoe.totalkms) %></td>
+        <td><%= link_to 'Ver', [shoe.runner, shoe] %></td>
+        <% if shoe.runner == current_runner %>
+          <td><%= link_to 'Destruir', [shoe.runner, shoe], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>  
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% end %>
+
+<%= link_to 'New Shoe', new_runner_shoe_path(current_runner) %>

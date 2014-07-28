@@ -1,3 +1,86 @@
 // Place all the styles related to the shoes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#shoes{
+  float:left;
+  background-color:#456;
+  width:80%;
+  margin:0 10%;
+}
+
+form{
+  float:left;
+  width:80%;
+  margin:1% 10%;
+  .field{
+    width:20%;
+    float:left;
+  }
+}
+
+.shoe{
+  width:80%;
+  margin:0 auto;
+  background-color:#383;
+  border:dotted 1px yellow;
+  margin-bottom:2%;
+  h4{
+    width:32%;
+    float:left;
+    margin-left:1%;
+  }
+  a{
+    color:#343;
+  }
+}
+
+#shoedata{
+  width:60%;
+  float:right;
+  margin-right:1%;
+  p{
+    float:left;
+    width:90%;
+    background-color:#664;
+    margin-bottom:5px;
+    margin-left:5px;
+    font-size: 16px;
+  }
+  #entrenamientos_zapatilla{
+    display: none;
+    p{
+      margin-left:1.5%;
+      background-color:yellow;
+      width:21%;
+      color:#111;
+      font-size:11px;
+    }
+  }
+}
+
+.shoeavatar{
+  float:left;
+  width:35%;
+  border:1px dotted red;
+  background-color:#321;
+  img{
+    float:lef;
+    margin:0 16%;
+    width:300px;
+    height:300px;
+  }
+}
+
+.desgastebajo{
+  background-color:green;
+}
+
+.desgastemedio{
+  background-color:yellow;
+}
+
+.desgastealto{
+	background-color:red;
+}
+

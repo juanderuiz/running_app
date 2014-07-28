@@ -17,11 +17,13 @@ class TrainingsController < ApplicationController
     #@trainings = Training.order('created_at DESC').limit(10)
     #@trainings = Training.includes(:runner).order('created_at DESC').limit(10)
     @trainings = @runner.trainings.order(date: :desc).limit(10) #esto no funciona si son del mismo dia
+    @training = Training.new
   end
 
   # GET /trainings/1
   # GET /trainings/1.json
   def show
+    #Suficiente con el set_training en el before_action
     #@training = Training.find(params[:id])
     #@training = @runner.trainings.find(params[:id])
     #@corredor = Runner.find(@training.runner_id)
@@ -32,6 +34,7 @@ class TrainingsController < ApplicationController
   # GET /trainings/new
   def new
     @training = Training.new
+    redirect_to @runner
   end
 
   # GET /trainings/1/edit
@@ -45,12 +48,13 @@ class TrainingsController < ApplicationController
     set_time
     respond_to do |format|
       if @training.save
-        format.html { redirect_to [@runner, @training], notice: 'Entrenamiento creado' }
+        format.html { redirect_to runner_trainings_path, notice: 'Entrenamiento creado' }
         format.json { render action: 'show', status: :created, location: @training } #Esto hay que cambiarlo creo
       else
         format.html { render action: 'new' }
         format.json { render json: @training.errors, status: :unprocessable_entity }
       end
+      format.js #Para el formulario de Nuevo Entrenamiento en el Show de Runner
     end
   end
 
@@ -83,10 +87,13 @@ class TrainingsController < ApplicationController
   # DELETE /trainings/1
   # DELETE /trainings/1.json
   def destroy
+    @shoe.totalkms -= @training.kms #Quito los kms a la zapatilla
     @training.destroy
+    @shoe.save
     respond_to do |format|
-      format.html { redirect_to runner_trainings_path(@runner) }
+      format.html { redirect_to runner_trainings_path }
       format.json { head :no_content }
+      format.js
     end
   end
 
@@ -105,13 +112,14 @@ class TrainingsController < ApplicationController
 
     def get_runner #también selecciona sus zapatillas disponibles
       @runner = Runner.find(params[:runner_id])
-      @my_shoes=[]
-      all_shoes = Shoe.all
-      all_shoes.each do |s|
-        if (s .runner_id == @runner.id)
-          @my_shoes.push(s) 
-        end
-      end
+      @my_shoes = Shoe.where(runner_id: params[:runner_id])
+      #@my_shoes=[]
+      #all_shoes = Shoe.all
+      #all_shoes.each do |s|
+        #if (s.runner_id == @runner.id)
+          #@my_shoes.push(s) 
+        #end
+      #end
     end
 
     def actualizarKms(zAnt,zNueva,kmsAnt,kmsNuevos)
