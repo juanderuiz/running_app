@@ -1,5 +1,5 @@
 class ShoesController < ApplicationController
-  before_action :authenticate_runner!, except: [:index]
+  before_action :authenticate_runner!, except: [:main]
   before_action :set_shoe, only: [:show, :edit, :update, :destroy]
   before_action :get_runner, except: [:main]
 

@@ -5,17 +5,14 @@ RunningProject::Application.routes.draw do
   root 'trainings#main'
 
   resources :runners do
-    member do
-      get 'changepassword'
-    end
     resources :trainings
     resources :shoes
   end
 
   resources :tipos
 
-  get 'allshoes' => 'shoes#main'
-
+  get 'allshoes' => 'shoes#main', :as => 'allshoes'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
