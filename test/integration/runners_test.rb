@@ -25,7 +25,7 @@ class RunnersTest < ActionDispatch::IntegrationTest
   	login_as(runner, :scope => :runner)
   	click_link "Iniciar Sesión"
   	click_link "Mis zapatillas"
-  	assert has_content? 'No shoes Available!'
+    assert has_content? 'No shoes Available!'
   end
 
   test "can see list of runners without login" do

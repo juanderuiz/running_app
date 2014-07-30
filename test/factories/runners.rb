@@ -3,7 +3,7 @@ FactoryGirl.define do
   	sequence(:name) { |i| "Nombre#{i}" }
     sequence(:email) { |i| "runner#{i}@gmail.com" }
     bio 'Crack keniata'
-    age '34'
+    sequence(:age) { |i| 20 + i }
     country 'Kenya'
     password 'f4k3p455w0rd'
 

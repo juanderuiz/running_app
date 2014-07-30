@@ -16,7 +16,7 @@ class TrainingsController < ApplicationController
   def index
     #@trainings = Training.order('created_at DESC').limit(10)
     #@trainings = Training.includes(:runner).order('created_at DESC').limit(10)
-    @trainings = @runner.trainings.order(date: :desc).limit(10) #esto no funciona si son del mismo dia
+    @trainings = @runner.trainings.order(date: :desc) #esto no funciona si son del mismo dia
     @training = Training.new
   end
 
@@ -87,9 +87,11 @@ class TrainingsController < ApplicationController
   # DELETE /trainings/1
   # DELETE /trainings/1.json
   def destroy
-    @shoe.totalkms -= @training.kms #Quito los kms a la zapatilla
+    if @shoe #por si el entrenamiento no tiene zapatilla registrada
+      @shoe.totalkms -= @training.kms#Quito los kms a la zapatilla
+      @shoe.save
+    end
     @training.destroy
-    @shoe.save
     respond_to do |format|
       format.html { redirect_to runner_trainings_path }
       format.json { head :no_content }

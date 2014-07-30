@@ -1,11 +1,5 @@
-<div id="entrenosrunner">
-  <header>
-    <h3>Lista de sesiones de entrenamiento de <%= link_to @runner.name, @runner %></h3>
-  </header>
-  <%= render @trainings %>
-</div>
-
-<!-- Formulario para entrenamiento -->
+<!-- Formulario para nuevo entrenamiento -->
+  <h3>¿Tienes un nuevo entrenamiento?</h3>
   <div id="nuevoentreno">
     <%= form_for([@runner, @training], remote: true) do |f| %>
   <% if @training.errors.any? %>
@@ -66,4 +60,11 @@
   </div> 
 </div>
 <!-- fin formulario nuevo entrenamiento -->
+
+<div id="entrenosrunner">
+  <header>
+    <h3>Lista de sesiones de entrenamiento de <%= link_to @runner.name, @runner %></h3>
+  </header>
+  <%= render @trainings %>
+</div>
 
