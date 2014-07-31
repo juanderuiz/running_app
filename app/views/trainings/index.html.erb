@@ -1,7 +1,8 @@
 <!-- Formulario para nuevo entrenamiento -->
   <h3>¿Tienes un nuevo entrenamiento?</h3>
   <div id="nuevoentreno">
-    <%= form_for([@runner, @training], remote: true) do |f| %>
+    
+    <%= form_for([@runner, @training]) do |f| %> <!-- He quitado remote: true porque no salía ordenado -->
   <% if @training.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@training.errors.count, "error") %> prohibited this training from being saved:</h2>

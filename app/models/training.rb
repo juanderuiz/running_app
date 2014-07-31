@@ -6,10 +6,10 @@ class Training < ActiveRecord::Base
 	belongs_to :runner
 	validates :runner, :presence => true
 
-        belongs_to :shoe
+  belongs_to :shoe
 
-        validates :kms, presence: true, numericality: {greater_than_or_equal_to: 0.01, less_than_or_equal_to: 50.00}
-        validates :hours, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 9  }
+  validates :kms, presence: true, numericality: {greater_than_or_equal_to: 0.01, less_than_or_equal_to: 50.00}
+  validates :hours, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 9  }
 	validates :minutes, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 59 }
 	validates :seconds, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 59 }
 

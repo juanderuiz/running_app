@@ -2,13 +2,13 @@ class TrainingsController < ApplicationController
   before_action :set_training, only: [:show, :edit, :update, :destroy]
   before_action :set_shoe, only: [:show, :edit, :update, :destroy]
   before_filter :get_runner, except: [:main]
-  after_action :set_kms, only: [:create] #falta el update
+  after_commit :set_kms, only: [:create] #falta el update o no?
   #before_action :set_time, only: [:edit, :update]
   #before_action :get_shoes, only: [:create, :edit, :update]
 
   def main
-    @trainings = Training.order(date: :desc).limit(15)
-    #En el root muestro los 15 últimos entrenamientos, de quien sean
+    @trainings = Training.limit(12).order(date: :desc)
+    #En el root muestro los 12 últimos entrenamientos, de quien sean
   end
 
   # GET /trainings
@@ -54,7 +54,7 @@ class TrainingsController < ApplicationController
         format.html { render action: 'new' }
         format.json { render json: @training.errors, status: :unprocessable_entity }
       end
-      format.js #Para el formulario de Nuevo Entrenamiento en el Show de Runner
+      #format.js #Para el formulario de Nuevo Entrenamiento en el Show de Runner
     end
   end
 

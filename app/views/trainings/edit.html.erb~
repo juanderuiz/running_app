@@ -1,5 +1,0 @@
-<h1>Editando entrenamiento de <%= @runner %></h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Ver todos', runner_training_path %>

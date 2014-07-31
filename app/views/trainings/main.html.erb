@@ -1,8 +1,7 @@
 <!-- Inicio Main  -->
 <div id="main">
-   <% cache ['content', Training.latest] do %>
+  <!-- He eliminado el cache porque no actualizaba la página, algo estaba mal-->
     <% @trainings.each do |training| %>
-     <% cache ['training', training] do %>
       <%= div_for training do %>
         <h4 class="date"><%= training.id %></h4>
 	      <h4 class="date"><%= training.date %></h4>
@@ -31,9 +30,7 @@
           <p class="comments"><%= truncate(training.comments, length: 30, separator: ' ', omission: '...') %></p>
         <% end %>
       <% end %>
-     <% end %> <!-- cache de cada training -->
     <% end %>
-   <% end %>
 </div>
 <!-- Fin Main -->
 

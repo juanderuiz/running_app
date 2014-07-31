@@ -21,7 +21,7 @@ class ShoesController < ApplicationController
   # GET /shoes/1.json
   def show
     #@corredor = Runner.find(@shoe.runner_id)
-    @entrenamientos = Training.where(shoe_id: @shoe.id)
+    @entrenamientos = Training.where(shoe_id: @shoe.id).order(date: :desc)
     @totalentrenos = @entrenamientos.count
   end
 

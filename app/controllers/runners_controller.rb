@@ -1,6 +1,6 @@
 class RunnersController < ApplicationController
   before_action :authenticate_runner!, except: [:index]
-  before_action :set_runner, only: [:show, :edit, :update, :destroy, :changepassword]
+  before_action :set_runner, only: [:show, :edit, :update, :destroy]
 
   # GET /runners
   # GET /runners.json
@@ -32,18 +32,6 @@ class RunnersController < ApplicationController
 
   # GET /runners/1/edit
   def edit
-  end
-
-  def changepassword
-    respond_to do |format|
-      if @runner.update(runner_params)
-        format.html { redirect_to @runner, notice: 'Runner was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @runner.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # POST /runners
