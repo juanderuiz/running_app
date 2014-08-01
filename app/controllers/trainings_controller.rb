@@ -2,7 +2,7 @@ class TrainingsController < ApplicationController
   before_action :set_training, only: [:show, :edit, :update, :destroy]
   before_action :set_shoe, only: [:show, :edit, :update, :destroy]
   before_filter :get_runner, except: [:main]
-  after_commit :set_kms, only: [:create] #falta el update o no?
+  #after_save :set_kms, only: [:create] #falta el update o no?
   #before_action :set_time, only: [:edit, :update]
   #before_action :get_shoes, only: [:create, :edit, :update]
 
@@ -16,7 +16,7 @@ class TrainingsController < ApplicationController
   def index
     #@trainings = Training.order('created_at DESC').limit(10)
     #@trainings = Training.includes(:runner).order('created_at DESC').limit(10)
-    @trainings = @runner.trainings.order(date: :desc) #esto no funciona si son del mismo dia
+    @trainings = @runner.trainings.limit(8).order(date: :desc) #esto no funciona si son del mismo dia
     @training = Training.new
   end
 
@@ -48,6 +48,7 @@ class TrainingsController < ApplicationController
     set_time
     respond_to do |format|
       if @training.save
+        set_kms
         format.html { redirect_to runner_trainings_path, notice: 'Entrenamiento creado' }
         format.json { render action: 'show', status: :created, location: @training } #Esto hay que cambiarlo creo
       else
@@ -87,15 +88,25 @@ class TrainingsController < ApplicationController
   # DELETE /trainings/1
   # DELETE /trainings/1.json
   def destroy
-    if @shoe #por si el entrenamiento no tiene zapatilla registrada
-      @shoe.totalkms -= @training.kms#Quito los kms a la zapatilla
-      @shoe.save
-    end
-    @training.destroy
-    respond_to do |format|
-      format.html { redirect_to runner_trainings_path }
-      format.json { head :no_content }
-      format.js
+    if @training.kms < 10
+      if @training.destroy
+        if @shoe #por si el entrenamiento no tiene zapatilla registrada
+          @shoe.totalkms -= @training.kms#Quito los kms a la zapatilla
+          @shoe.save
+        end
+      
+        respond_to do |format|
+          format.html { redirect_to runner_trainings_path }
+          format.json { head :no_content }
+          format.js
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to runner_trainings_path, notice: 'No puedes borrar este entrenamiento' }
+        format.json { head :no_content }
+        #format.js
+      end
     end
   end
 

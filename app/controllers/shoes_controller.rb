@@ -74,11 +74,12 @@ class ShoesController < ApplicationController
   # DELETE /shoes/1
   # DELETE /shoes/1.json
   def destroy
-    @shoe.destroy
-    entrenos = Training.where(shoe_id: @shoe.id) #Busca y pone a nil
-    entrenos.each do |entreno| #los entrenos de la zapatilla borrada
-      entreno.shoe_id = nil 
-      entreno.save
+    entrenos = Training.where(shoe_id: @shoe.id) #Busca los entrenos de esa zapatilla por si...
+    if @shoe.destroy
+      entrenos.each do |e| #pongo shoe a NIL en cada entreno de la zapatilla borrada
+        e.shoe_id = nil 
+        e.save
+      end  
     end
     respond_to do |format|
       format.html { redirect_to runner_shoes_path }
