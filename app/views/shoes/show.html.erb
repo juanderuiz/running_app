@@ -34,7 +34,7 @@
       <% @entrenamientos.each do |training| %>
         <p><%= training.date %></p>
         <p><%= sprintf("%0.02f",training.kms) %></p>
-        <p><%= training.time %></p>
+        <p><%= time=hms(training.time) %></p>
         <p><%= training.description %></p>
       <% end %>
    </div>

@@ -1,32 +1,42 @@
 <!-- Entrenamiento -->
       <%= div_for training do %>
-        <h4 class="date"><%= training.id %></h4>
-        <h4 class="date"><%= training.date %></h4>
-        <h4 class="kms"><%= sprintf("%0.02f", training.kms) %></h4>
-        <% if !training.time %>
-          <h4 class="time">Tiempo NO registrado</h4>
-        <% else %>
-          <h4 class="time"><%= training.time %> segundos</h4>
-        <% end %>
-        <% if training.shoe %>
-          <%= link_to training.shoe.nombre.titleize, [training.runner, training.shoe] %>
-        <% else %>
-          <p>Unknown shoes</p>
-        <% end %>
-        <p class="description"><%= training.description %></p>
-        <% if training.comments.empty? %>
-          <p> Sin comentarios</p>
-        <% else %>
-          <a class="vercomentarios">Ver comentarios</a>
-          <!-- Comments tiene display none -->
-          <p class="comments"><%= truncate(training.comments, length: 30, separator: ' ', omission: '...') %></p>
-        <% end %>
-        
-        <div class="acciones">
-          <%= link_to 'Ver', [@runner, training] %>
-          <% if training.runner == current_runner %>
-            <%= link_to 'Eliminar', [@runner, training], method: :delete, remote: true, data: { confirm: '¿Seguro?' }%>
-          <% end %>   
+        <div class="arriba">
+          <h4 class="date"><%= training.date %></h4>
+          <div class="acciones">
+            <!--<%= link_to 'Ver', [@runner, training] %>-->
+            <% if training.runner == current_runner %>
+              <ul><li><%= link_to '¿Editar?', edit_runner_training_path(@runner, training) %></li>
+              <li><%= link_to '¿Eliminar?', [@runner, training], method: :delete, remote: true, data: { confirm: '¿Seguro?' }%></li></ul>
+            <% end %>   
+          </div>
         </div>
+        <div class="centro">
+          <h4 class="kms"><%= sprintf("%0.02f", training.kms) %><span> km</span></h4>
+          <% if !training.time %> 
+            <h4 class="time">Tiempo NO registrado</h4>
+          <% else %>
+            <h4 class="time"><%= "Tiempo: " + time=hms(training.time) %></h4>
+          <% end %>
+        </div>
+        <div class="zapatillas">
+            <% if training.shoe %>
+              <%= link_to training.shoe.nombre.titleize, [training.runner, training.shoe] %>
+            <% else %>
+              <p>Unknown shoes</p>
+            <% end %>
+        </div>
+        <div class="abajo">
+          
+          <p class="description"><%= training.description %></p>
+          <% if training.comments.empty? %>
+            <p> Sin comentarios</p>
+          <% else %>
+            <a class="vercomentarios">Ver comentarios</a>
+            <!-- Comments tiene display none -->
+            <p class="comments"><%= truncate(training.comments, length: 30, separator: ' ', omission: '...') %></p>
+          <% end %>
+        </div>
+        
+        
       <% end %>
 <!-- Fin Entrenamiento -->

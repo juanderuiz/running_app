@@ -9,6 +9,6 @@ $(document).ready(function(){
     	$(this).css({'color':'#ffd','font-size':'14px'});
     });
     $('.training').on('mouseleave','.time',function(){
-        $(this).css({'font-size':'12px'});
+        $(this).css({'font-size':'16px'});
     });
-});  
+}); 

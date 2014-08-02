@@ -15,38 +15,7 @@ $colorEnlace: #aaa;
   //background-color:yellow;
 }
 
-.training{
-  float:left;       /* y si probamos a remover los float como en el CSS Cross Country?*/
-  width:24%;
-  color:#234;
-  background-color:#232;
-  border: 1px dashed black;
-  margin-left:0.5%;
-  margin-bottom:5px;
-  margin-top:5px;
-  height: 120px;
 
-  h4{
-    float:left;
-    width:48%;
-    background-color:red;
-  }
-  a{
-    float:left;
-    width:46%;
-    color:$colorEnlace;
-  }
-  p{
-    float:left;
-    width:45%;
-    background-color:green;
-  }
-  .comments{
-  margin:1% 1%;
-  width:98%;
-  display: none;
-  }
-}
 
 .vercomentarios{
   background-color:#fff;
@@ -68,29 +37,86 @@ $colorEnlace: #aaa;
   header{
     background-color:#357;
     width:100%;
+    margin-bottom:1%;
+    padding:1% 0;
     height:20px;
+    text-align:center;
     h3{
       font-size:18px;
       color:white;
     }
   }
-  table{
-    .celdamini{
-      width:6%;
-      border: 1px solid red;
+  .training{
+    float:left;       /* y si probamos a remover los float como en el CSS Cross Country?*/
+    margin-bottom:2%;
+    color:#fff;
+    width:25%;
+    background-color:#0aa;
+    .arriba{
+      width:100%;
+      .date{
+        width:38%;
+        float:left;
+        font-size:14px;
+        text-align:center;
+        background-color:#333;
+      }
+      .acciones{
+        width:62%;
+        float:right;
+        font-size:13px;
+        background-color:#444;
+        ul{
+          text-decoration:none;
+          li{
+            a{
+              text-align:center;
+              font-size:13px;
+            }
+          }
+        }
+      }
     }
-    .celdamaxi{
-      width:20%;
-      border: 1px solid red;
+    .centro{
+        width:100%;
+        .kms{
+          width:50%;
+          float:left;
+          background-color:#567;
+          font-size:26px;
+          text-align:center;
+          padding:4% 0;
+          span{
+            font-size:14px;
+          }
+        }
+        .time{
+          width:50%;
+          float:left;
+          background-color:#888;
+          font-size:16px;
+          padding:4% 0;
+          text-align:center;
+        }
     }
-    th{
-      width:14%;
-      border:1px solid black;
-    }
-    td{
-      width:14%;
-      border:1px solid black;
+    .zapatillas{
+      width:100%;
+      float:left;
+      background-color:#087;
       text-align:center;
+      a{
+        text-decoration:none;
+        font-size:15px;
+        width:98%;
+      }
+    }
+    .abajo{
+      float:left;
+      width:100%;
+      background-color:#222;
+      .comments{
+        display:none;
+      }
     }
   }
 }

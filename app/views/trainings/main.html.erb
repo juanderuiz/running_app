@@ -9,7 +9,7 @@
         <% if !training.time %>
           <h4 class="time">Tiempo NO registrado</h4>
         <% else %>
-          <h4 class="time"><%= training.time %> segundos</h4>
+          <h4 class="time"><%= time=hms(training.time) %></h4>
         <% end %>
         <% if training.runner %>
 	        <%= link_to training.runner.name.titleize, training.runner %>

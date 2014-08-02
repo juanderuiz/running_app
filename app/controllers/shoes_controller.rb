@@ -62,7 +62,7 @@ class ShoesController < ApplicationController
   def update
     respond_to do |format|
       if @shoe.update(shoe_params)
-        format.html { redirect_to runner_shoes_path, notice: 'Zapatilla creada satisfactoriamente.' }
+        format.html { redirect_to runner_shoes_path, notice: 'Zapatilla actualizada satisfactoriamente.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
