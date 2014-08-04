@@ -16,26 +16,13 @@ $colorEnlace: #aaa;
 }
 
 
-
-.vercomentarios{
-  background-color:#fff;
-}
-
-
-#nuevorunner{
-  float:left;
-  width:50%;
-}
-
 /* Trainings -> Index*/
 
 #entrenosrunner{
   width:90%;
   float:left;
   margin-left:5%;
-  background-color:#990;
   header{
-    background-color:#357;
     width:100%;
     margin-bottom:1%;
     padding:1% 0;
@@ -47,11 +34,13 @@ $colorEnlace: #aaa;
     }
   }
   .training{
+    border:1px solid white;
     float:left;       /* y si probamos a remover los float como en el CSS Cross Country?*/
     margin-bottom:2%;
+    margin-left:0.5%;
+    padding:1% 0;
     color:#fff;
-    width:25%;
-    background-color:#0aa;
+    width:24.2%;
     .arriba{
       width:100%;
       .date{
@@ -59,19 +48,21 @@ $colorEnlace: #aaa;
         float:left;
         font-size:14px;
         text-align:center;
-        background-color:#333;
       }
       .acciones{
-        width:62%;
+        width:42%;
         float:right;
-        font-size:13px;
-        background-color:#444;
+        margin-right:1.5%;
+        font-size:10px;
         ul{
-          text-decoration:none;
+          overflow:hidden;
           li{
+            width:48%;
+            float:left;
+            text-align:center;
             a{
-              text-align:center;
               font-size:13px;
+              text-decoration:none;
             }
           }
         }
@@ -80,12 +71,14 @@ $colorEnlace: #aaa;
     .centro{
         width:100%;
         .kms{
-          width:50%;
+          border-radius:15px;
+          background:#445;
+          width:45%;
           float:left;
-          background-color:#567;
-          font-size:26px;
+          margin:0 2%;
+          font-size:20px;
           text-align:center;
-          padding:4% 0;
+          padding:3% 0;
           span{
             font-size:14px;
           }
@@ -93,17 +86,16 @@ $colorEnlace: #aaa;
         .time{
           width:50%;
           float:left;
-          background-color:#888;
           font-size:16px;
-          padding:4% 0;
+          padding:3% 0;
           text-align:center;
         }
     }
     .zapatillas{
       width:100%;
       float:left;
-      background-color:#087;
       text-align:center;
+      padding:1% 0;
       a{
         text-decoration:none;
         font-size:15px;
@@ -113,7 +105,17 @@ $colorEnlace: #aaa;
     .abajo{
       float:left;
       width:100%;
-      background-color:#222;
+      padding:0.5% 0;
+      .description{
+        float:left;
+        width:40%;
+        text-align:center;
+      }
+      .comentarios{
+        width:60%;
+        float:right;
+        text-align:center;
+      }
       .comments{
         display:none;
       }
@@ -122,13 +124,35 @@ $colorEnlace: #aaa;
 }
 
 #nuevoentreno{
-    width:90%;
-    background:#cce;
-    margin:0 auto;
-    .field{
-      width:25%;
+  overflow:hidden;
+  border:1px solid #000;
+  width:90%;
+  background:yellow;
+  margin:0 auto;
+  form{
+    width:66%;
+    background:blue;
+    margin:2% 17%;
+    .smallfield{
+      width:20%;
+      margin-left:5%;
       float:left;
+      background:green;
+      input{
+        width:80%;
+      }
     }
+    .mediumfield{
+      width:33%;
+      float:left;
+      background:#222;
+    }
+    .bigfield{
+      width:80%;
+      float:left;
+      background:#555;
+    }
+  }
 }
 
 .nuevo{

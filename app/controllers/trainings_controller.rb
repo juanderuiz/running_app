@@ -6,6 +6,7 @@ class TrainingsController < ApplicationController
   #before_action :set_time, only: [:edit, :update]
   #before_action :get_shoes, only: [:create, :edit, :update]
 
+
   def main
     @trainings = Training.limit(12).order(date: :desc)
     #En el root muestro los 12 últimos entrenamientos, de quien sean
@@ -88,7 +89,6 @@ class TrainingsController < ApplicationController
   # DELETE /trainings/1
   # DELETE /trainings/1.json
   def destroy
-    if @training.kms < 10
       if @training.destroy
         if @shoe #por si el entrenamiento no tiene zapatilla registrada
           @shoe.totalkms -= @training.kms#Quito los kms a la zapatilla
@@ -100,14 +100,13 @@ class TrainingsController < ApplicationController
           format.json { head :no_content }
           format.js
         end
-      end
-    else
-      respond_to do |format|
-        format.html { redirect_to runner_trainings_path, notice: 'No puedes borrar este entrenamiento' }
-        format.json { head :no_content }
-        #format.js
-      end
-    end
+      else
+        respond_to do |format|
+          format.html { redirect_to runner_trainings_path, notice: 'No puedes borrar este entrenamiento' }
+          format.json { head :no_content }
+          #format.js
+        end
+      end  
   end
 
   private

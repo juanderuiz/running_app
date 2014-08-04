@@ -1,7 +1,8 @@
 $(document).ready(function(){
 	//Muestra los comentarios
-	$('.training').on('click','.vercomentarios',function(event){
+	$('.training').on('click','.enlacecomentarios',function(event){
 	   event.preventDefault();//para que no haga scroll la página
+       $(this).hide();
        $(this).closest('.training').find('.comments').fadeToggle();
     });
     //Tiempo resaltado

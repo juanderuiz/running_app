@@ -1,36 +1,7 @@
 <!-- Inicio Main  -->
-<div id="main">
+<div id="entrenosrunner">
   <!-- He eliminado el cache porque no actualizaba la página, algo estaba mal-->
-    <% @trainings.each do |training| %>
-      <%= div_for training do %>
-        <h4 class="date"><%= training.id %></h4>
-	      <h4 class="date"><%= training.date %></h4>
-        <h4 class="kms"><%= sprintf("%0.02f", training.kms) %></h4>
-        <% if !training.time %>
-          <h4 class="time">Tiempo NO registrado</h4>
-        <% else %>
-          <h4 class="time"><%= time=hms(training.time) %></h4>
-        <% end %>
-        <% if training.runner %>
-	        <%= link_to training.runner.name.titleize, training.runner %>
-        <% else %>
-          <p>Atleta borrado</p>
-        <% end %>
-        <% if training.shoe %>
-	        <%= link_to training.shoe.nombre.titleize, [training.runner, training.shoe] %>
-        <% else %>
-          <p>Unknown shoes</p>
-        <% end %>
-        <p class="description"><%= training.description %></p>
-        <% if training.comments.empty? %>
-          <p> Sin comentarios</p>
-        <% else %>
-          <a class="vercomentarios">Ver comentarios</a>
-          <!-- Comments tiene display none -->
-          <p class="comments"><%= truncate(training.comments, length: 30, separator: ' ', omission: '...') %></p>
-        <% end %>
-      <% end %>
-    <% end %>
+  <%= render @trainings %>
 </div>
 <!-- Fin Main -->
 
