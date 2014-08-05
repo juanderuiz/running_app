@@ -14,48 +14,52 @@
         </ul>
       </div>
     <% end %>
+    <div class="formup">
+      <div class="smallfield">
+        <%= f.label :kms %><br>
+        <%= f.text_field :kms %>
+      </div>
+      <div class="smallfield">
+        <%= f.label :hours %><br>
+        <%= f.number_field :hours %>
+      </div>
+      <div class="smallfield">
+        <%= f.label :minutes %><br>
+        <%= f.number_field :minutes %>
+      </div>
+      <div class="smallfield">
+        <%= f.label :seconds %><br>
+        <%= f.number_field :seconds %>
+      </div>
+    </div>
+    <div class="formmiddle">
+      <div class="mediumfield">
+        <%= f.label :date %><br>
+        <%= f.date_select :date %>
+      </div>
+      <div class="normalfield">
+        <%= f.label :shoe %><br>
+        <% if @my_shoes.empty?%>
+          <%= f.label "No hay zapatillas" %>
+        <% else %>
+          <%= f.collection_select :shoe_id, @my_shoes, :id, :nombre, {prompt: "Selecciona"} %>  
+        <% end %>
+      </div>
+      <div class="normalfield">
+        <%= f.label :description %><br>
+       <!-- <%= f.select :description, ['CC','Series','Competición'] %>-->
+        <%= f.collection_select :description, Tipo.all, :nombre, :nombre, {prompt: "Selecciona el tipo"} %>
+      </div>
+    </div>
 
-    <div class="smallfield">
-      <%= f.label :kms %><br>
-      <%= f.text_field :kms %>
-    </div>
-    <div class="smallfield">
-      <%= f.label :hours %><br>
-      <%= f.number_field :hours %>
-    </div>
-    <div class="smallfield">
-      <%= f.label :minutes %><br>
-      <%= f.number_field :minutes %>
-    </div>
-    <div class="smallfield">
-      <%= f.label :seconds %><br>
-      <%= f.number_field :seconds %>
-    </div>
-    <div class="bigfield">
-      <%= f.label :date %><br>
-      <%= f.date_select :date %>
-    </div>
-
-    <div class="mediumfield">
-      <%= f.label :shoe %><br>
-      <% if @my_shoes.empty?%>
-      <%= f.label "No hay zapatillas" %>
-      <% else %>
-      <%= f.collection_select :shoe_id, @my_shoes, :id, :nombre, {prompt: "Selecciona"} %>  
-      <% end %>
-    </div>
-    
-    <div class="smallfield">
-      <%= f.label :description %><br>
-     <!-- <%= f.select :description, ['CC','Series','Competición'] %>-->
-      <%= f.collection_select :description, Tipo.all, :nombre, :nombre, {prompt: "Selecciona el tipo"} %>
-    </div>
-    <div class="bigfield">
-      <%= f.label :comments %><br>
-      <%= f.text_area :comments %>
-    </div>
-    <div class="smallfield">
-      <%= f.submit %>
+    <div class="formdown">
+      <div class="bigfield">
+        <%= f.label :comments %><br>
+        <%= f.text_area :comments %>
+      </div>
+      <div class="buttondown">
+        <%= f.submit %>
+      </div>
     </div>
   <% end %>
 </div> 

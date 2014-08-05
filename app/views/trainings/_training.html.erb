@@ -1,17 +1,6 @@
 <!-- Entrenamiento -->
       <%= div_for training do %>
         <div class="arriba">
-          <h4 class="date"><%= training.date %></h4>
-          <div class="acciones">
-            <% if training.runner == current_runner %>
-              <ul><li><%= link_to '¿Editar?', edit_runner_training_path(training.runner, training) %></li>
-              <li><%= link_to '¿Eliminar?', [training.runner, training], method: :delete, remote: true, data: { confirm: '¿Seguro?' }%></li></ul>
-            <% else %>
-              <p>---</p>
-            <% end %>   
-          </div>
-        </div>
-        <div class="centro">
           <h4 class="kms"><%= sprintf("%0.02f", training.kms) %><span> km</span></h4>
           <% if !training.time %> 
             <h4 class="time">Tiempo NO registrado</h4>
@@ -26,7 +15,7 @@
               <p>Unknown shoes</p>
             <% end %>
         </div>
-        <div class="abajo">
+        <div class="centro">
           <div class="description">
             <p><%= training.description %></p>
           </div>
@@ -34,11 +23,23 @@
             <% if training.comments.empty? %>
               <p>Sin comentarios</p>
             <% else %>
-              <a class="enlacecomentarios">Ver comentarios</a>
+              <a class="enlacecomentarios">Comentarios</a>
               <!-- Comments tiene display none -->
               <p class="comments"><%= truncate(training.comments, length: 30, separator: ' ', omission: '...') %></p>
             <% end %>
           </div>  
+        </div>
+        <div class="abajo">
+          <h4 class="date"><%= training.date %></h4>
+          <div class="acciones">
+            <% if training.runner == current_runner %>
+              <ul><li><%= link_to '¿Editar?', edit_runner_training_path(training.runner, training) %></li>
+              <li><%= link_to '¿Eliminar?', [training.runner, training], method: :delete, remote: true, data: { confirm: '¿Seguro?' }%></li></ul>
+            <% else %>
+              <% atleta = Runner.find(training.runner)%>
+              <%= link_to atleta.name, runner_path(training.runner) %>
+            <% end %>   
+          </div>
         </div>
       <% end %>
 <!-- Fin Entrenamiento -->
