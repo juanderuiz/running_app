@@ -1,6 +1,6 @@
 <!-- Formulario para nuevo entrenamiento -->
 <h3>¿Tienes un nuevo entrenamiento?</h3>
-<div id="nuevoentreno">
+<div id="nuevoentreno" class="container">
     
   <%= form_for([@runner, @training]) do |f| %> <!-- He quitado remote: true porque no salía ordenado -->
     <% if @training.errors.any? %>
@@ -14,7 +14,7 @@
         </ul>
       </div>
     <% end %>
-    <div class="formup">
+    <div class="formup container">
       <div class="smallfield">
         <%= f.label :kms %><br>
         <%= f.text_field :kms %>
@@ -32,7 +32,7 @@
         <%= f.number_field :seconds %>
       </div>
     </div>
-    <div class="formmiddle">
+    <div class="formmiddle container ">
       <div class="mediumfield">
         <%= f.label :date %><br>
         <%= f.date_select :date %>
@@ -52,7 +52,7 @@
       </div>
     </div>
 
-    <div class="formdown">
+    <div class="formdown container">
       <div class="bigfield">
         <%= f.label :comments %><br>
         <%= f.text_area :comments %>
@@ -65,7 +65,7 @@
 </div> 
 <!-- fin formulario nuevo entrenamiento -->
 
-<div id="entrenosrunner">
+<div id="entrenosrunner" class="container">
   <header>
     <h3>Últimos entrenamientos de <%= link_to @runner.name, @runner %></h3>
   </header>

@@ -64,12 +64,14 @@ body{
   color:#fff;
 }
 
-#header {
-  float:left;
+.container{
   overflow: hidden;
-  width:100%;
+}
+
+#header{
+  float:left;
+  width:98%;
   margin-top: 20px;
-  height: 270px;
   margin-bottom: 0px;
 }
 

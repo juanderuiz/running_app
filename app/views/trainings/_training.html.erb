@@ -1,6 +1,6 @@
 <!-- Entrenamiento -->
       <%= div_for training do %>
-        <div class="arriba">
+        <div class="arriba container">
           <h4 class="kms"><%= sprintf("%0.02f", training.kms) %><span> km</span></h4>
           <% if !training.time %> 
             <h4 class="time">Tiempo NO registrado</h4>
@@ -8,14 +8,14 @@
             <h4 class="time"><%= "Tiempo: " + time=hms(training.time) %></h4>
           <% end %>
         </div>
-        <div class="zapatillas">
+        <div class="zapatillas container">
             <% if training.shoe %>
               <%= link_to training.shoe.nombre.titleize, [training.runner, training.shoe] %>
             <% else %>
               <p>Unknown shoes</p>
             <% end %>
         </div>
-        <div class="centro">
+        <div class="centro container">
           <div class="description">
             <p><%= training.description %></p>
           </div>
@@ -29,15 +29,15 @@
             <% end %>
           </div>  
         </div>
-        <div class="abajo">
+        <div class="abajo container">
           <h4 class="date"><%= training.date %></h4>
-          <div class="acciones">
+          <div class="acciones container">
             <% if training.runner == current_runner %>
               <ul><li><%= link_to '¿Editar?', edit_runner_training_path(training.runner, training) %></li>
               <li><%= link_to '¿Eliminar?', [training.runner, training], method: :delete, remote: true, data: { confirm: '¿Seguro?' }%></li></ul>
             <% else %>
               <% atleta = Runner.find(training.runner)%>
-              <%= link_to atleta.name, runner_path(training.runner) %>
+              <%= link_to truncate(atleta.name, length: 18, separator: ' ', omission: ''), runner_path(training.runner) %>
             <% end %>   
           </div>
         </div>
