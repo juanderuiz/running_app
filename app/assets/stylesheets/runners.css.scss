@@ -21,20 +21,31 @@ $colorTexto: #fff;
 
 /* Runners -> Show */
 
-.avatar img{
-  float:left;
-  height:30%;
-  width: 30%;
-  margin-left:10%;
+#contentrunner{
+  background:yellow;
+  width:90%;
+  margin:0 auto;
+  .avatar{
+    border:1px dotted blue;
+    width:31%;
+    float:left;
+    img{
+      float:left;
+      height:100%;
+      width:100%;
+    }
+  }
+  #datosrunner{
+    background:blue;
+    float:left;
+    width:30%;
+    height:30%;
+    border:1px dashed red;
+    padding:1% 3%;
+  }
 }
 
-#datosrunner{
-  float:left;
-  width: 22%;
-  height: 30%;
-  background-color:#644;
-  padding:1% 3%;
-}
+
 
 #sesiones{
   float:left;
@@ -42,7 +53,7 @@ $colorTexto: #fff;
   background:#fac;
   margin-left:10%;
   #realizadas{
-    background:#aad;
+    background:red;
     width:50%;
     float:left;
     table tbody tr td{

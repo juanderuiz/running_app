@@ -1,54 +1,72 @@
 <% if @runner %>
 
-<div class="avatar">
-  <%= image_tag @runner.avatar.url(:large) %>
-</div>
+<div id="contentrunner" class="container">
 
-<div id="datosrunner">
-<p>
-  <strong>Nombre:</strong>
-  <%= @runner.name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @runner.email %>
-</p>
-
-<p>
-  <strong>Bio:</strong>
-  <%= @runner.bio %>
-</p>
-
-<p>
-  <strong>Edad:</strong>
-  <%= @runner.age %>
-</p>
-
-<p>
-  <strong>País:</strong>
-  <%= @runner.country %>
-</p>
-
-<%= link_to 'Mis Zapatillas', runner_shoes_path(@runner) %>
-
-<% if @runner == current_runner %>
-<%= link_to 'Editar', edit_runner_path(current_runner) %>
-<%= link_to 'Cambia tu contraseña', edit_runner_registration_path %>
-<!--<%= link_to 'Borrar atleta', @runner, method: :delete %> -->
-<% end %>
-
-</div>
-
-
-<div id="sesiones">
-  <div id="realizadas">
-    <!-- Tengo un @total con las sesiones que no se meter en el link_to-->
-    <%= link_to 'Total Sesiones', runner_trainings_path(@runner) %>
-    <h3>Zapatillas que usa: </h3>
-    <h3>Récords personales</h3>
+  <div class="avatar container">
+    <%= image_tag @runner.avatar.url(:large) %>
   </div>
-  <!-- fin realizadas -->  
+
+  <div id="datosrunner" class="container">
+    <p>
+      <strong>Nombre:</strong>
+      <%= @runner.name %>
+    </p>
+
+    <p>
+      <strong>Email:</strong>
+      <%= @runner.email %>
+    </p>
+
+    <p>
+      <strong>Bio:</strong>
+      <%= @runner.bio %>
+    </p>
+
+    <p>
+      <strong>Edad:</strong>
+      <%= @runner.age.to_s + " HACER esto automático" %>
+    </p>
+
+    <p>
+      <strong>País:</strong>
+      <%= @runner.country %>
+    </p>
+
+    <%= link_to 'Mis Zapatillas', runner_shoes_path(@runner) %>
+
+    <% if @runner == current_runner %>
+      <%= link_to 'Editar', edit_runner_path(current_runner) %>
+      <%= link_to 'Cambia tu contraseña', edit_runner_registration_path %>
+      <!--<%= link_to 'Borrar atleta', @runner, method: :delete %> -->
+    <% end %>
+
+  </div>
+  <!-- fin datosrunner -->
+
+  <div id="sesiones">
+    <div id="realizadas">
+      <!-- Tengo un @total con las sesiones que no se meter en el link_to-->
+      <%= link_to "Entrenamientos", runner_trainings_path(@runner) %>
+      <p></p>
+      <h3>Zapatillas que usa: </h3>
+      <h3>Récords personales</h3>
+        <% if @records %>
+          <ul>
+            <li>Maratón: <%= hms(@records[:maraton].time) if @records[:maraton] %></li>
+            <li>Media Maratón: <%= hms(@records[:media].time) if @records[:media] %></li>
+            <li>10k: <%= hms(@records[:diezK].time) if @records[:diezK] %></li>
+            <li>5k: <%= hms(@records[:cincoK].time) if @records[:cincoK] %></li>
+            <!-- Poner un valor por defecto si no hay record -->
+          </ul>
+        <% else %>
+          <p>No records yet</p>
+        <% end %>
+    </div>
+    <!-- fin realizadas -->  
+  </div>
+  <!-- fin sesiones -->
+</div>
+<!-- fin contentRunner -->
 
 <% else %>
   <p>No existe el corredor buscado</p>

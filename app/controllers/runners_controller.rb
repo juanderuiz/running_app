@@ -1,6 +1,7 @@
 class RunnersController < ApplicationController
   before_action :authenticate_runner!, except: [:index]
   before_action :set_runner, only: [:show, :edit, :update, :destroy]
+  before_action :get_records, only: [:show]
 
   # GET /runners
   # GET /runners.json
@@ -79,6 +80,17 @@ class RunnersController < ApplicationController
     def set_runner
       @runner = Runner.find_by_id(params[:id])
       @my_shoes = Shoe.where(runner_id: params[:id])
+    end
+
+    def get_records
+      @runnerid = params[:id]
+      @tipo = ["Maratón", "Media Maratón", "10k", "5k"]
+      @records = {maraton: nil, media: nil, diezK: nil}
+      @records[:maraton] = Training.where(["description = ?", @tipo[0]]).last
+      @records[:media] = Training.where("description = ?", @tipo[1]).last 
+      @records[:diezK] = Training.where("description = ?", @tipo[2]).last
+      @records[:cincoK] = Training.where("description = ?", @tipo[3]).last
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

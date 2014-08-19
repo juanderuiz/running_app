@@ -1,7 +1,9 @@
 <!-- Entrenamiento -->
       <%= div_for training do %>
         <div class="arriba container">
-          <h4 class="kms"><%= sprintf("%0.02f", training.kms) %><span> km</span></h4>
+          <h4 class="kms" data-kms=<%= sprintf("%0.02f", training.kms).to_s %> >
+            <%= sprintf("%0.02f", training.kms) %><span> km</span>
+          </h4>
           <% if !training.time %> 
             <h4 class="time">Tiempo NO registrado</h4>
           <% else %>
