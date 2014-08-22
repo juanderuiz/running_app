@@ -1,20 +1,22 @@
-<h2>Necesitamos algunos datos</h2>
+<div id="aviso" class="container">
+  <h2>¡Necesitamos algunos datos!</h2>
+</div>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :multipart => true} ) do |f| %>
   <%= devise_error_messages! %>
 
   <%= render "runners/form" %>
 
-  <div><%= f.label :email, "Correo electrónico" %><br />
+  <div class="field"><%= f.label :email, "Correo electrónico" %><br />
   <%= f.email_field :email, :autofocus => true %></div>
 
-  <div><%= f.label :password, "Contraseña" %><br />
+  <div class="field"><%= f.label :password, "Contraseña" %><br />
   <%= f.password_field :password %></div>
 
-  <div><%= f.label :password_confirmation, "Confirmar contraseña" %><br />
+  <div class="field"><%= f.label :password_confirmation, "Confirmar contraseña" %><br />
   <%= f.password_field :password_confirmation %></div>
 
-  <div><%= f.submit "Crear runner" %></div>
+  <div class="field"><%= f.submit "Crear runner" %></div>
 <% end %>
 
 <%= render "devise/shared/links" %>

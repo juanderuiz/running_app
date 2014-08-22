@@ -34,6 +34,9 @@ gem 'paperclip', '~> 3.0'
 # Devise for Authentication
 gem 'devise', '3.0.0'
 
+# AdroiteAge to find the Age of User
+gem "adroit-age"
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

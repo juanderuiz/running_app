@@ -39,6 +39,8 @@ class RunnersController < ApplicationController
   # POST /runners.json
   def create
     @runner = Runner.new(runner_params)
+    @fecha = Time.new(params[:year], params[:month], params[:day])
+    @runner.age = ((Time.now - @fecha)/1.year).round
 
     respond_to do |format|
       if @runner.save

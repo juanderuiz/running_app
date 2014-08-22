@@ -8,6 +8,12 @@ class Runner < ActiveRecord::Base
 	validates :bio, :length => {:maximum => 140}
 	validates :email, :uniqueness => true
   validates :age, :presence => true, :numericality => { :only_integer => true, :greater_than => 18 }
+
+  validates :year, :presence => true, :numericality => { :only_integer => true, :greater_than => 1940, :less_than => 1998 }
+  validates :month, :presence => true, :numericality => { :only_integer => true, :greater_than_or_equal_to => 1, :less_than_or_equal_to => 13 }
+  validates :day, :presence => true, :numericality => { :only_integer => true, :greater_than_or_equal_to => 1, :less_than_or_equal_to => 31 }
+
+
 	has_many :trainings,  dependent: :destroy
   has_many :shoes, dependent: :destroy
 
