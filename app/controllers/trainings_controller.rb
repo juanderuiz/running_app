@@ -17,7 +17,7 @@ class TrainingsController < ApplicationController
   def index
     #@trainings = Training.order('created_at DESC').limit(10)
     #@trainings = Training.includes(:runner).order('created_at DESC').limit(10)
-    @trainings = @runner.trainings.limit(15).order(date: :desc) #esto no funciona si son del mismo dia
+    @trainings = @runner.trainings.limit(16).order(date: :desc) #esto no funciona si son del mismo dia
     @training = Training.new
   end
 

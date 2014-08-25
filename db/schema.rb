@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140822151716) do
+ActiveRecord::Schema.define(version: 20140825161142) do
 
   create_table "runners", force: true do |t|
     t.string   "name"
@@ -34,9 +34,7 @@ ActiveRecord::Schema.define(version: 20140822151716) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.integer  "year"
-    t.integer  "month"
-    t.integer  "day"
+    t.date     "datebirth"
   end
 
   add_index "runners", ["email"], name: "index_runners_on_email", unique: true
