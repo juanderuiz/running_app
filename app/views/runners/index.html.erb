@@ -19,7 +19,11 @@
       <tr>
         <td><%= link_to runner.name.titleize, runner %></td>
         <td><%= runner.country %></td>
-        <td><%= runner.age %></td>
+        <% if runner.datebirth %>
+          <td><%= runner.datebirth.to_s + " (" + ((Date.today - runner.datebirth).to_f/365).round.to_s + ")" %></td>
+        <% else %>
+          <td>N/D</td>
+        <% end %>  
         <td><%= runner.bio %></td>
         <!--<td><%= link_to 'Edit', edit_runner_path(runner) %></td>
         <td><%= link_to 'Destroy', runner, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->

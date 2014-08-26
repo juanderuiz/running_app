@@ -8,7 +8,7 @@ class Runner < ActiveRecord::Base
 	validates :bio, :length => {:maximum => 140}
 	validates :email, :uniqueness => true
   validates :datebirth, :presence => true
-  #Falta chequear la edad!
+  #Falta chequear la edad mínima!
 
 	has_many :trainings,  dependent: :destroy
   has_many :shoes, dependent: :destroy
