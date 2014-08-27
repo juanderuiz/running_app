@@ -9,6 +9,14 @@ class Runner < ActiveRecord::Base
 	validates :email, :uniqueness => true
   validates :datebirth, :presence => true
   #Falta chequear la edad mínima!
+  validate :at_least_18
+
+  def at_least_18
+    if self.datebirth
+      errors.add(:datebirth, 'Debes tener 18 años. Lo sentimos.') if self.datebirth > 18.years.ago.to_date
+      # Si tu edad de nacimiento es más 'moderna' que hoy más 18 años
+    end
+  end
 
 	has_many :trainings,  dependent: :destroy
   has_many :shoes, dependent: :destroy

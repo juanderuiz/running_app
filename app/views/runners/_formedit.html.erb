@@ -24,8 +24,8 @@
     <%= f.text_area :bio %>
   </div>
   <div class="field">
-    <%= f.label :age %><br>
-    <%= f.number_field :age %>
+    <%= f.label :datebirth %><br>
+    <%= f.date_select :datebirth, start_year: 1960 %>
   </div>
    <!-- Upload your attachments via a simple file_fields in the form-->
   <div class="field">

@@ -20,6 +20,7 @@ $colorEnlace: #aaa;
 
 #entrenosrunner{
   width:90%;
+  background-color:#ffaacc;
   float:left;
   margin-left:5%;
   header{
@@ -34,14 +35,16 @@ $colorEnlace: #aaa;
     }
   }
   .training{
+    background-color:#666688;
     border:1px solid white;
+    box-sizing: border-box;
     overflow: hidden;
     float:left;
     margin-bottom:2%;
-    margin-left:0.5%;
+    margin-left:0.8%;
     padding:1% 0;
     color:#fff;
-    width:24.2%;
+    width:24%;
     .abajo{
       width:100%;
       .date{

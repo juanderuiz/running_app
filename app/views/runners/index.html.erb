@@ -20,7 +20,7 @@
         <td><%= link_to runner.name.titleize, runner %></td>
         <td><%= runner.country %></td>
         <% if runner.datebirth %>
-          <td><%= runner.datebirth.to_s + " (" + ((Date.today - runner.datebirth).to_f/365).round.to_s + ")" %></td>
+          <td><%= runner.datebirth.to_s + " (" + ((Date.today - runner.datebirth).to_f/365).floor.to_s + ")" %></td>
         <% else %>
           <td>N/D</td>
         <% end %>  
