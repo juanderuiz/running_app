@@ -64,22 +64,36 @@ body{
   color:#fff;
 }
 
+#avisos{
+  float:left;
+  width:40%;
+  margin:2% 30%;
+}
+
+#avisos .notice, .alert{
+  text-align: center;
+  width: 80%;
+  margin:0 auto;
+  font-size: 16px;
+  color:#fff;
+}
+
 .container{
   overflow: hidden;
 }
 
 #header{
-  clear:both;
-  float:left;
+  /*clear:both;
+  float:left;*/
   width:98%;
   margin:1% auto;
 }
 
 #header figure{
 	float:left;
-	margin-left: 4%;
+	margin-left: 5%;
 	margin-right: 2%;
-	width: 30%;
+	max-width: 30%;
 }
 
 #header #mainlink{
@@ -100,8 +114,8 @@ body{
 #header #menuinicio{
 	float:right;
 	width: 10%;
-	height: 270px;
 	font-size: 14px;
+  margin-right: 4%;
 }
 
 #header #menuinicio a{

@@ -9,20 +9,19 @@ $colorEnlace: #aaa;
   font-size: 14px;
 }
 
+/*
 #main{
   float:left;
   width:100%;
   //background-color:yellow;
-}
+} */
 
 
 /* Trainings -> Index*/
 
 #entrenosrunner{
   width:90%;
-  background-color:#ffaacc;
-  float:left;
-  margin-left:5%;
+  margin:0 auto;
   header{
     width:100%;
     margin-bottom:1%;
@@ -35,8 +34,9 @@ $colorEnlace: #aaa;
     }
   }
   .training{
-    background-color:#666688;
     border:1px solid white;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
     box-sizing: border-box;
     overflow: hidden;
     float:left;

@@ -3,10 +3,21 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #shoes{
-  float:left;
+  text-align:center;
   background-color:#456;
   width:80%;
-  margin:0 10%;
+  margin:0 auto;
+}
+
+#noshoes{
+  text-align:center;
+  width:60%;
+  margin: 0 auto;
+  h2{
+    width:80%;
+    font-size:18px;
+    margin:0 auto;
+  }
 }
 
 form{
