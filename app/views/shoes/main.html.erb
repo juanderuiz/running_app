@@ -27,7 +27,7 @@
         <td><%= sprintf("%0.02f", shoe.totalkms) %></td>
         <td><%= link_to 'Ver', [shoe.runner, shoe] %></td>
         <% if shoe.runner == current_runner %>
-          <td><%= link_to 'Destruir', [shoe.runner, shoe], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Eliminar', [shoe.runner, shoe], method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>  
       </tr>
     <% end %>

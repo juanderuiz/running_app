@@ -12,7 +12,7 @@ $(document).ready(function(){
     });
     //Tiempo resaltado
     $('.training').on('mouseover','.time',function(){
-    	$(this).css({'color':'#ffd','font-size':'17px'});
+    	$(this).css({'color':'#ffd','font-size':'18px'});
     });
     $('.training').on('mouseleave','.time',function(){
         $(this).css({'font-size':'16px'});
@@ -24,9 +24,9 @@ $(document).ready(function(){
 
 function cambiarColor(){
   var distancia = $(this).data('kms');
-  if (distancia<10){
+  if (distancia<12.01){
     $(this).css({'background-color':'green'});
-  } else if (distancia<15){
+  } else if (distancia<16){
     $(this).css({'background-color':'yellow', 'color': '#bbb'});
   } else if (distancia<22){
     $(this).css({'background-color':'orange'});
