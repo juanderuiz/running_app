@@ -27,7 +27,7 @@
             <% else %>
               <a class="enlacecomentarios">Comentarios</a>
               <!-- Comments tiene display none -->
-              <p class="comments"><%= truncate(training.comments, length: 30, separator: ' ', omission: '...') %></p>
+              <p class="comments"><%= truncate(training.comments, length: 36, separator: ' ', omission: '...') %></p>
             <% end %>
           </div>  
         </div>
@@ -39,7 +39,7 @@
               <li><%= link_to '¿Eliminar?', [training.runner, training], method: :delete, remote: true, data: { confirm: '¿Seguro?' }%></li></ul>
             <% else %>
               <% atleta = Runner.find(training.runner)%>
-              <%= link_to truncate(atleta.name, length: 16, separator: ' ', omission: ''), runner_path(training.runner) %>
+              <%= link_to truncate(atleta.name, length: 24, separator: ' ', omission: ''), runner_path(training.runner) %>
             <% end %>   
           </div>
         </div>

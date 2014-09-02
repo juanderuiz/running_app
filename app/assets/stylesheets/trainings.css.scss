@@ -42,31 +42,31 @@ $colorEnlace: #aaa;
     float:left;
     margin-bottom:2%;
     margin-left:0.8%;
-    padding:1% 0;
+    padding:.3% 0;
     color:#fff;
     width:24%;
     .abajo{
       width:100%;
+      text-align:left;
       .date{
-        width:35%;
-        float:left;
+        width:33%;
+        display:inline-block;
         font-size:13px;
         text-align:center;
+        vertical-align:top;
       }
       .acciones{
-        width:65%;
-        float:right;
+        width:64%;
+        display:inline-block;
+        text-align:center;
         a{
           font-size:14px;
           color:#fff;
-          margin-left:15%;
         }
         ul{
-          overflow:hidden;
           li{
-            width:48%;
-            float:left;
-            text-align:center;
+            display:inline-block;
+            width:24%;
             a{
               font-size:10px;
               text-decoration:none;
@@ -123,7 +123,7 @@ $colorEnlace: #aaa;
         text-align:center;
       }
       .comentarios{
-        width:65%;
+        width:64%;
         float:right;
         text-align:center;
         a{

@@ -3,20 +3,18 @@ $(document).ready(function(){
 	$('.training').on('mouseover','.enlacecomentarios',function(event){
 	   event.preventDefault();//para que no haga scroll la página
        $(this).hide();
+       $(this).closest('.centro').find('.description').css({'display':'none'});
+       $(this).closest('.comentarios').css({'width':'100%'});
        $(this).closest('.comentarios').find('.comments').css({'color':'yellow'}).fadeToggle();
     });
     $('.training').on('mouseleave','.comments',function(event){
        event.preventDefault();//para que no haga scroll la página
        $(this).hide();
        $(this).closest('.comentarios').find('.enlacecomentarios').fadeToggle();
+       $(this).closest('.comentarios').css({'width':'64%'});
+       $(this).closest('.centro').find('.description').css({'display':'inline-block'});
     });
-    //Tiempo resaltado
-    $('.training').on('mouseover','.time',function(){
-    	$(this).css({'color':'#ffd','font-size':'18px'});
-    });
-    $('.training').on('mouseleave','.time',function(){
-        $(this).css({'font-size':'16px'});
-    });
+    
     //Para cambiar el fondo del campo kilometros segun la distancia, usando cambiarColor ---> addClass??
     colorEntreno();
 
