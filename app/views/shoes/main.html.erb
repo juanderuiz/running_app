@@ -1,17 +1,21 @@
+<section id="listashoes" class="container">
+
 <% if @shoes.empty? %>
-  <div id="noshoes" class="container">
+  <header id="noshoes" class="container">
     <h2>No shoes Available!</h2>
-  </div>
+  </header>
 
 <% else %>
 
-<h1>Listing shoes</h1>
+<header class="container">
+    <h3>Nuestras mejores armas, ¡devoran kilómetros!</h3>
+</header>
 
 <table>
   <thead>
     <tr>
-      <th>Runner</th>
       <th>Nombre</th>
+      <th>Runner</th>
       <th>Totalkms</th>
       <th></th>
       <th></th>
@@ -22,19 +26,15 @@
   <tbody>
     <% @shoes.each do |shoe| %>
       <tr>
+        <td><%= link_to shoe.nombre, [shoe.runner,shoe] %></td>
         <td><%= link_to shoe.runner.name.titleize, shoe.runner %></td>
-        <td><%= shoe.nombre %></td>
-        <td><%= sprintf("%0.02f", shoe.totalkms) %></td>
-        <td><%= link_to 'Ver', [shoe.runner, shoe] %></td>
-        <% if shoe.runner == current_runner %>
-          <td><%= link_to 'Eliminar', [shoe.runner, shoe], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>  
+        <td><%= sprintf("%0.02f", shoe.totalkms) %></td> 
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
 <% end %>
+
+</section>
 
