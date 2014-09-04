@@ -21,7 +21,7 @@ class RunnersController < ApplicationController
       @sesiones = Training.where(:runner_id => @runner.id).order(date: :desc)
       @total = @sesiones.count(:all)
       @entrenos = @sesiones.limit(@limite)
-      @age = ((Date.today - @runner.datebirth).to_f / 365).round
+      @age = ((Date.today - @runner.datebirth).to_f / 365).floor
       #@entrenos = Training.where(:runner_id => @runner.id).limit(@limite)
     end
     @training=Training.new #Para el formulario de Nuevo Entrenamiento en SHOW

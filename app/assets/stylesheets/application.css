@@ -78,6 +78,18 @@ body{
   color:#fff;
 }
 
+#error_explanation{
+  border:none;
+}
+
+#error_explanation h2{
+  color: #000;
+}
+
+#error_explanation ul li{
+  color:#000;
+}
+
 .container{
   overflow: hidden;
 }

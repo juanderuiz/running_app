@@ -28,10 +28,17 @@ class RunnersTest < ActionDispatch::IntegrationTest
     assert has_content? 'No shoes Available!'
   end
 
-  test "can see list of runners without login" do
+  test "can see list of runners without login but is EMPTY" do
   	visit root_url
   	click_link "Nuestros Runners"
-  	assert has_link? 'Únete a ellos!'
+  	assert has_link? '¿Quieres ser el primero?'
+  end
+
+  test "can see list of runners" do
+    runner = FactoryGirl.create(:runner)
+    visit root_url
+    click_link "Nuestros Runners"
+    assert has_link? '¡Únete a ellos!'
   end
 
 end
