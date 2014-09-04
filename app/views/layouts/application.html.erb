@@ -20,7 +20,7 @@
     <p>Bienvenido <%= current_runner.name %></p>
     <%= link_to 'Cerrar Sesión', destroy_runner_session_path, method: :delete %>
     <%= link_to 'Mi perfil', runner_path(current_runner) %>
-    <%= link_to 'Nuevo entrenamieto', runner_trainings_path(current_runner) %>
+    <%= link_to 'Nuevo entrenamiento', runner_trainings_path(current_runner) %>
     <%= link_to 'Mis zapatillas', runner_shoes_path(current_runner) %>
   <% else %>
     <%= link_to 'Iniciar Sesión', new_runner_session_path %>

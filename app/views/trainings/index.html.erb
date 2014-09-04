@@ -66,9 +66,15 @@
 <!-- fin formulario nuevo entrenamiento -->
 
 <div id="entrenosrunner" class="container">
-  <header>
-    <h3>Entrenamientos de <%= link_to @runner.name, @runner %></h3>
-  </header>
-  <%= render @trainings %>
+  <% unless @trainings.empty? %>
+    <header>
+      <h3>Entrenamientos de <%= link_to @runner.name, @runner %></h3>
+    </header>
+    <%= render @trainings %>
+  <% else %>
+    <header>
+      <h3>Sin entrenamientos</h3>
+    </header>
+  <% end %>
 </div>
 
