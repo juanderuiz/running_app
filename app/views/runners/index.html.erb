@@ -1,39 +1,47 @@
-<main id="listarunners" class="container">
+<section id="listarunners" class="container">
 
-<header class="container">
-  <h3>Estos son nuestros corredores, <%= link_to '¡Únete a ellos!', new_runner_registration_path %></h3>
-</header>
+<% unless @runners.empty? %>
 
-<table>
-  <thead>
-    <tr> 
-      <th>Nombre</th>
-      <th>País</th>
-      <th>Edad</th>
-      <th>Bio</th>
-    </tr>
-  </thead>
+  <header class="container">
+    <h3>Estos son nuestros corredores, <%= link_to '¡Únete a ellos!', new_runner_registration_path %></h3>
+  </header>
 
-  <tbody>
-    <% @runners.each do |runner| %>
-      <tr>
-        <td><%= link_to runner.name.titleize, runner %></td>
-        <td><%= runner.country %></td>
-        <% if runner.datebirth %>
-          <td><%= runner.datebirth.to_s + " (" + ((Date.today - runner.datebirth).to_f/365).floor.to_s + ")" %></td>
-        <% else %>
-          <td>N/D</td>
-        <% end %>  
-        <td><%= runner.bio %></td>
-        <!--<td><%= link_to 'Edit', edit_runner_path(runner) %></td>
-        <td><%= link_to 'Destroy', runner, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+  <table>
+    <thead>
+      <tr> 
+        <th>Nombre</th>
+        <th>País</th>
+        <th>Edad</th>
+        <th>Bio</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @runners.each do |runner| %>
+        <tr>
+          <td><%= link_to runner.name.titleize, runner %></td>
+          <td><%= runner.country %></td>
+          <% if runner.datebirth %>
+            <td><%= runner.datebirth.to_s + " (" + ((Date.today - runner.datebirth).to_f/365).floor.to_s + ")" %></td>
+          <% else %>
+            <td>N/D</td>
+          <% end %>  
+          <td><%= runner.bio %></td>
+          <!--<td><%= link_to 'Edit', edit_runner_path(runner) %></td>
+          <td><%= link_to 'Destroy', runner, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-</main>
+<% else %>
+
+  <header class="container">
+    <h3><%= link_to '¿Quieres ser el primero?', new_runner_registration_path %></h3>
+  </header>
+
+<% end %>
+
+</section>
 
 

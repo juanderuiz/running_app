@@ -28,7 +28,7 @@ $colorTexto: #fff;
   margin:0 auto;
   .avatar{
     border:1px dotted blue;
-    width:31%;
+    max-width:32%;
     float:left;
     img{
       float:left;
@@ -79,8 +79,12 @@ $colorTexto: #fff;
     h3{
       font-size:18px;
     }
+    a{
+      text-decoration:none;
+    }
   }  
   table{
+    margin:0 auto;
     thead{
       font-size:14px;
     }
@@ -106,14 +110,11 @@ $colorTexto: #fff;
 }
 
 form.new_runner{
-  background-color:#333456;
   .field{
     float:left;
     clear:both;
     width:32%;
-    background-color:#555443;
     &.medio{
-      background-color:#443322;
       width:49%;
     }
   }
