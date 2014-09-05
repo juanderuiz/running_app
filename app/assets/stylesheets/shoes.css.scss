@@ -2,12 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#shoes{
-  text-align:center;
-  background-color:#456;
-  width:80%;
-  margin:0 auto;
-}
+
+/* Shoes -> Main */
 
 #noshoes{
   text-align:center;
@@ -35,12 +31,13 @@
     }
   }  
   table{
+    width:60%;
     margin:0 auto;
     thead{
       font-size:14px;
     }
     tbody tr td{
-      width:30%;
+      width:32%;
       text-align:center;
       a{
         color:#fff;
@@ -50,6 +47,8 @@
     }
   }
 }
+
+/* Shoes -> Index */
 
 form{
   float:left;
@@ -62,21 +61,38 @@ form{
   }
 }
 
-.shoe{
-  width:80%;
+#shoes{
+  text-align:center;
+  width:70%;
   margin:0 auto;
-  background-color:#383;
-  border:dotted 1px yellow;
   margin-bottom:2%;
+  header h3{
+    margin-top:.8%;
+    font-size:18px;
+    a{
+      text-decoration:none;
+    }
+  }
+}
+
+.shoe{ 
+  width:80%;
+  margin:.8% auto;
+  background-color:#888666;
   h4{
     width:32%;
     float:left;
     margin-left:1%;
+    font-size:15px;
   }
   a{
+    font-size:15px;
     color:#343;
+    text-decoration:none;
   }
 }
+
+/* Shoes -> Show */
 
 #shoedata{
   width:60%;

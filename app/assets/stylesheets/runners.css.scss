@@ -84,6 +84,7 @@ $colorTexto: #fff;
     }
   }  
   table{
+    width:80%;
     margin:0 auto;
     thead{
       font-size:14px;
@@ -91,6 +92,9 @@ $colorTexto: #fff;
     tbody tr td{
       width:15%;
       text-align:center;
+      &:last-of-type{
+        width:25%;
+      }
       a{
         font-size:16px;
         text-decoration:none;
