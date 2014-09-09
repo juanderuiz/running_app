@@ -19,7 +19,7 @@ class RunnersTest < ActionDispatch::IntegrationTest
   	assert has_link? 'Mi perfil'
   end
 
-  test "cannot see list of shoes" do
+  test "my list of shoes is EMPTY" do
   	visit root_url
   	runner = FactoryGirl.create(:runner)
   	login_as(runner, :scope => :runner)
@@ -34,7 +34,7 @@ class RunnersTest < ActionDispatch::IntegrationTest
   	assert has_link? '¿Quieres ser el primero?'
   end
 
-  test "can see list of runners" do
+  test "can see list of with 1 runner" do
     runner = FactoryGirl.create(:runner)
     visit root_url
     click_link "Nuestros Runners"

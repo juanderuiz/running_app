@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :shoe do
-  	nombre "Adidas Supernova"
+  	sequence(:nombre) { |i| "Adidas Supernova#{i}" }
     totalkms '555'
     runner
   end

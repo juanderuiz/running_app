@@ -7,8 +7,13 @@ FactoryGirl.define do
     country 'Kenya'
     password 'f4k3p455w0rd'
 
-    #factory :runner_with_shoes do
-  	  #association :shoe
-    #end
+    factory :runner_with_shoes do
+  	  ignore do
+        shoes_count 3
+      end
+      after(:create) do |runner, evaluator|
+        create_list(:shoe, evaluator.shoes_count, runner: runner)
+      end
+    end
   end  
 end
