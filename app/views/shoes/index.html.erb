@@ -5,7 +5,9 @@
 <% else %>
   <!-- Inicio Lista Zapatillas -->
   <div id="shoes" class="container">
-    <h3>Lista de zapatillas de <%= @runner.name %></h3>
+    <header>
+      <h3>Lista de zapatillas de <%= link_to @runner.name, @runner %></h3>
+    </header>
     <%= render @shoes %>
   </div>
   <!-- Fin Lista Zapatillas -->
