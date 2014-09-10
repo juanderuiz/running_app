@@ -141,13 +141,15 @@ body{
 
 footer{
   width: 100%;
-  position:fixed;
-  bottom:0;
   text-align: center;
   font-size: 15px;
   color:#fff;
-  text-decoration: none;
   margin:20px 0;
+}
+
+footer a{
+  text-decoration: none;
+  font-size: 17px;
 }
 
 .verde{

@@ -19,13 +19,14 @@ class RunnersTest < ActionDispatch::IntegrationTest
   	assert has_link? 'Mi perfil'
   end
 
-  test "my list of shoes is EMPTY" do
-  	visit root_url
-  	runner = FactoryGirl.create(:runner)
-  	login_as(runner, :scope => :runner)
-  	click_link "Iniciar Sesión"
-  	click_link "Mis zapatillas"
-    assert has_content? 'No shoes Available!'
+  test "can logout" do
+    visit root_url
+    runner = FactoryGirl.create(:runner)
+    login_as(runner, :scope => :runner)
+    click_link "Iniciar Sesión"
+    assert has_link? "Cerrar Sesión"
+    click_link "Cerrar Sesión"
+    assert has_link? "Iniciar Sesión"
   end
 
   test "can see list of runners without login but is EMPTY" do
@@ -34,11 +35,14 @@ class RunnersTest < ActionDispatch::IntegrationTest
   	assert has_link? '¿Quieres ser el primero?'
   end
 
-  test "can see list of with 1 runner" do
+  test "can see list of with 3 runners" do
     runner = FactoryGirl.create(:runner)
+    runner2 = FactoryGirl.create(:runner)
+    runner3 = FactoryGirl.create(:runner)
     visit root_url
     click_link "Nuestros Runners"
     assert has_link? '¡Únete a ellos!'
+    assert has_selector?('tr.corredor', count:3)
   end
 
 end

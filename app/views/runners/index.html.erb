@@ -18,7 +18,7 @@
 
     <tbody>
       <% @runners.each do |runner| %>
-        <tr>
+        <tr class="corredor">
           <td><%= link_to runner.name.titleize, runner %></td>
           <td><%= runner.country %></td>
           <% if runner.datebirth %>

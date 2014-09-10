@@ -8,7 +8,7 @@ class ShoesTest < ActionDispatch::IntegrationTest
   	assert has_content? 'No shoes Available!'
   end
 
-  test "can see LIST of shoes without login" do
+  test "can see the LIST of everyone shoes without login" do
     shoe = FactoryGirl.create(:shoe)
     visit root_url
     click_link "Sus Zapatillas"
@@ -23,7 +23,7 @@ class ShoesTest < ActionDispatch::IntegrationTest
     click_link "Iniciar Sesión"
     click_link "Mi perfil"
     click_link "Mis Zapatillas"
-    assert has_selector? 'h3', text: "No shoes Available!"
+    assert has_selector?('h3', text: "No shoes Available!")
   end
 
   test "when login can see my list with the NUMBER of shoes" do
@@ -33,11 +33,11 @@ class ShoesTest < ActionDispatch::IntegrationTest
     click_link "Iniciar Sesión"
     #click_link "Mi perfil"
     click_link "Mis zapatillas"
-    assert has_selector? '#shoes div'
-    assert has_selector? '.shoe div', count:6
-    #assert has_selector? '.acciones div', count:6
-    assert has_selector? 'h4', count:14 # (shoes*2)+2
-    assert has_selector? 'h3', text: "Lista de zapatillas de #{runner.name}"
+    assert has_selector?('#shoes div')
+    assert has_selector?('.shoe div', count:6)
+    #assert has_selector?('.acciones div', count:6)
+    assert has_selector?('h4', count:14) # (shoes*2)+2
+    assert has_selector?('h3', text: "Lista de zapatillas de #{runner.name}")
   end
 
 end
