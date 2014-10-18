@@ -136,10 +136,10 @@ body{
 	float:left;
 	margin-bottom: 5px;
 	text-decoration: none;
-
 }
 
 footer{
+  background: #556677;
   width: 100%;
   text-align: center;
   font-size: 15px;

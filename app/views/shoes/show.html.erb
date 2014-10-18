@@ -1,42 +1,44 @@
 <!-- Shoe -->
-<div id="shoe">
-  
-<% if @shoe.totalkms <300 %>
-  <div id="shoedata" class="desgastebajo">
-<% elsif @shoe.totalkms <550 %>
-  <div id="shoedata" class="desgastemedio">
-<% else %>
-  <div id="shoedata" class="desgastealto">
-<% end %>
+<div id="shoe" class="container">
+    <% if @shoe.totalkms <300 %>
+      <div id="shoedata" class="container desgastebajo">
+    <% elsif @shoe.totalkms <550 %>
+      <div id="shoedata" class="container desgastemedio">
+    <% else %>
+      <div id="shoedata" class="container desgastealto">
+    <% end %>
 
-  <p>
-    <strong>Runner:</strong>
-    <%= @runner.name %>
-  </p>
+    <p>
+      <strong>Runner:</strong>
+      <%= @runner.name %>
+    </p>
 
-  <p>
-    <strong>Nombre:</strong>
-    <%= @shoe.nombre %>
-  </p>
+    <p>
+      <strong>Nombre:</strong>
+      <%= @shoe.nombre %>
+    </p>
 
-  <p>
-    <strong>Kms totales:</strong>
-    <%= sprintf("%0.02f", @shoe.totalkms) %>
-  </p>
+    <p>
+      <strong>Kms totales:</strong>
+      <%= sprintf("%0.02f", @shoe.totalkms) %>
+    </p>
 
-  <p id="listaentrenos">
-    <strong>Entrenamientos:</strong>
-    <%= @totalentrenos %>
-  </p>
-   <div id="entrenamientos_zapatilla">
+    <p id="listaentrenos">
+      <strong>Entrenamientos:</strong>
+      <%= @totalentrenos.to_s + " (ver)" %>
+    </p>
+    <!-- Entrenamientos de cada zapatilla -->
+    <div id="entrenamientos_zapatilla" class="container">
       <% @entrenamientos.each do |training| %>
         <p><%= training.date %></p>
         <p><%= sprintf("%0.02f",training.kms) %></p>
         <p><%= time=hms(training.time) %></p>
         <p><%= training.description %></p>
       <% end %>
-   </div>
+    </div>
+    <!-- Fin Entrenamientos de cada zapatilla -->
   </div>
+  <!-- Fin Shoedata -->
 
   <div class="shoeavatar">
     <% if @shoe.avatar %>
@@ -49,7 +51,7 @@
 </div>
 <!-- Fin Shoe -->
 
-<div class="nuevo">
+<!--<div class="nuevo">
   <%= link_to 'Editar', edit_runner_shoe_path(@runner, @shoe) %> |
   <%= link_to 'Ver todas', runner_shoes_path %>
-</div>
+</div>-->

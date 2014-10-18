@@ -50,17 +50,6 @@
 
 /* Shoes -> Index */
 
-form{
-  float:left;
-  overflow:hidden;
-  width:80%;
-  margin:1% 10%;
-  .field{
-    width:20%;
-    float:left;
-  }
-}
-
 #shoes{
   text-align:center;
   width:70%;
@@ -92,12 +81,33 @@ form{
   }
 }
 
+#newshoe{
+  width:100%;
+  background:blue;
+}
+
+form{
+  overflow:hidden;
+  width:80%;
+  margin:1% 10%;
+  .field{
+    width:20%;
+    float:left;
+  }
+}
+
 /* Shoes -> Show */
 
+#shoe{
+  clear:both;
+  width:100%;
+  margin:0 auto;
+}
+
 #shoedata{
-  width:60%;
-  float:right;
-  margin-right:1%;
+  float:left;
+  width:62%;
+  margin-left:4%;
   p{
     float:left;
     width:90%;
@@ -108,26 +118,26 @@ form{
   }
   #entrenamientos_zapatilla{
     display: none;
+    float:left;
     p{
       margin-left:1.5%;
-      background-color:yellow;
+      background-color:white;
       width:21%;
       color:#111;
       font-size:11px;
+      text-align:center;
     }
   }
 }
 
 .shoeavatar{
-  float:left;
-  width:35%;
-  border:1px dotted red;
-  background-color:#321;
+  float:right;
+  width:25%;
+  margin-right:4%;
   img{
-    float:lef;
-    margin:0 16%;
-    width:300px;
-    height:300px;
+    margin:0 auto;
+    width:99%;
+    height:99%;
   }
 }
 

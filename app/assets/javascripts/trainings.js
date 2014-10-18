@@ -28,13 +28,13 @@ function undoMuestraComentario(event){
 
 function cambiarColor(){
   var distancia = $(this).data('kms');
-  if (distancia<12.01){
+  if (distancia<10.01){
     $(this).css({'background-color':'green'});
-  } else if (distancia<16){
+  } else if (distancia<14){
     $(this).css({'background-color':'yellow', 'color': '#bbb'});
-  } else if (distancia<22){
+  } else if (distancia<20){
     $(this).css({'background-color':'orange'});
-  } else if (distancia>35) {
+  } else if (distancia>32) {
     $(this).css({'background-color':'#011'});
   }
 }
