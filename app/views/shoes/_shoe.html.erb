@@ -4,10 +4,11 @@
         <h4><%= link_to shoe.nombre, [@runner, shoe] %></h4>
         <h4><%= sprintf("%0.02f", shoe.totalkms) %></h4>
         
-        <div class="acciones">
-          <% if shoe.runner == current_runner %>
-            <%= link_to 'Eliminar', [@runner, shoe], method: :delete, remote: true, data: { confirm: '¿Seguro?' }%>
-          <% end %>   
-        </div>
+        <% if shoe.runner == current_runner %>
+	      <div class="acciones">
+	        <%= link_to 'Eliminar', [@runner, shoe], method: :delete, remote: true, data: { confirm: '¿Seguro?' }%> 
+	      </div>
+	    <% end %>
+
       <% end %>
 <!-- Fin Zapatilla-->
