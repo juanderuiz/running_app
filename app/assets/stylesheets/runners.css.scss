@@ -23,42 +23,38 @@ $colorTexto: #fff;
 
 #contentrunner{
   clear:both;
-  background:yellow;
-  width:90%;
+  width:80%;
   margin:0 auto;
+  font-size:14px;
+  .avatar, #datosrunner, #sesiones{
+    display: inline-block;
+    vertical-align: top;
+    text-align:left;
+    margin-left:3%;
+  }
   .avatar{
-    border:1px dotted blue;
     max-width:32%;
-    float:left;
     img{
-      float:left;
       height:100%;
       width:100%;
     }
   }
   #datosrunner{
-    background:blue;
-    float:left;
-    margin-left:1%;
-    width:30%;
-    height:30%;
-    border:1px dashed red;
-    padding:1% 3%;
+    width:28%;
+    padding:1% 1%;
+    p{
+      margin-bottom:0.8%;
+    }
   }
   #sesiones{
-    float:left;
     width:30%;
-    background:red;
-    margin-left:1%;
     #realizadas{
-      width:90%;
-      margin-left:5%;
+      padding:1% 1%;
+      width:100%;
       float:left;
-      table tbody{
-        tr td{
-          width:14%;
-          text-align:center;
-        }
+      ul li{
+        font-size:14px;
+        margin-bottom:0.8%;
       }
     }
   }
