@@ -86,14 +86,19 @@ $colorTexto: #fff;
   table{
     width:80%;
     margin:0 auto;
-    thead{
-      font-size:14px;
+    thead tr th{
+      width:15%;
+      &:last-of-type, &:first-of-type{
+        width:32%;
+      }
     }
     tbody tr td{
+      color:$colorTexto;
+      margin-top:1%;
       width:15%;
       text-align:center;
-      &:last-of-type{
-        width:25%;
+      &:last-of-type, &:first-of-type{
+        width:32%;
       }
       a{
         font-size:16px;

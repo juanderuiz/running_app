@@ -1,14 +1,18 @@
-<!-- Zapatilla -->
-      <%= div_for shoe do %>
+<!-- Zapatilla 
+      <%= div_for shoe do %>-->
+
+      <tr>
         
-        <h4><%= link_to shoe.nombre, [@runner, shoe] %></h4>
-        <h4><%= sprintf("%0.02f", shoe.totalkms) %></h4>
+        <td><%= link_to shoe.nombre, [@runner, shoe] %></td>
+        <td><%= sprintf("%0.02f", shoe.totalkms) %></td>
         
         <% if shoe.runner == current_runner %>
-	      <div class="acciones">
-	        <%= link_to 'Eliminar', [@runner, shoe], method: :delete, remote: true, data: { confirm: '¿Seguro?' }%> 
-	      </div>
+	      <td class="acciones">
+	        <%= link_to '¿Eliminar?', [@runner, shoe], method: :delete, remote: true, data: { confirm: '¿Seguro?' }%> 
+	      </td>
 	    <% end %>
 
-      <% end %>
-<!-- Fin Zapatilla-->
+	  </tr>
+
+      <!--<% end %>
+ Fin Zapatilla-->
