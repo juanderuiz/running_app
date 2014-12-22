@@ -7,7 +7,7 @@ class ShoesController < ApplicationController
 
   # GET /shoes
   def main
-    @shoes = Shoe.all
+    @shoes = Shoe.all.order(totalkms: :desc)
   end
 
   # GET /shoes
