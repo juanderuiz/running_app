@@ -64,11 +64,18 @@
   }
 }
 
-.shoe{ 
+table{ 
   width:80%;
   margin:.8% auto;
-  background-color:#888666;
-  h4{
+  tr th{
+    width:32%;
+    float:left;
+    margin-left:1%;
+    font-size:15px;
+    border:1px solid white;
+  }
+  tr td{
+    margin-top:1%;
     width:32%;
     float:left;
     margin-left:1%;

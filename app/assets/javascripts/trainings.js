@@ -32,10 +32,10 @@ function cambiarColor(){
     $(this).css({'background-color':'green'});
   } else if (distancia<14){
     $(this).css({'background-color':'yellow', 'color': '#bbb'});
-  } else if (distancia<20){
+  } else if (distancia<=24){
     $(this).css({'background-color':'orange'});
-  } else if (distancia>32) {
-    $(this).css({'background-color':'#011'});
+  } else if (distancia>24) {
+    $(this).css({'background-color':'red'});
   }
 }
 

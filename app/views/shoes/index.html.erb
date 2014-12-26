@@ -8,7 +8,18 @@
     <header>
       <h3>Lista de zapatillas de <%= link_to @runner.name, @runner %></h3>
     </header>
-    <%= render @shoes %>
+    <table>
+      <thead>
+       <tr>
+        <th>Modelo</th>
+        <th>Kms</th>
+        <th>Acciones</th>
+       </tr>
+      </thead>
+      <tbody>
+        <%= render @shoes %>
+      </tbody>
+    </table>
   </div>
   <!-- Fin Lista Zapatillas -->
 

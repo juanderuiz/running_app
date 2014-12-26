@@ -1,69 +1,71 @@
-<!-- Formulario para nuevo entrenamiento -->
-<h3>¿Tienes un nuevo entrenamiento?</h3>
-<div id="nuevoentreno" class="container">
-    
-  <%= form_for([@runner, @training]) do |f| %> <!-- He quitado remote: true porque no salía ordenado -->
-    <% if @training.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@training.errors.count, "error") %> prohibited this training from being saved:</h2>
+<% if current_runner == @runner %>
+  <!-- Formulario para nuevo entrenamiento -->
+  <h3>¿Tienes un nuevo entrenamiento?</h3>
+  <div id="nuevoentreno" class="container">
+      
+    <%= form_for([@runner, @training]) do |f| %> <!-- He quitado remote: true porque no salía ordenado -->
+      <% if @training.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@training.errors.count, "error") %> prohibited this training from being saved:</h2>
 
-        <ul>
-        <% @training.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
+          <ul>
+          <% @training.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="formup container">
+        <div class="smallfield">
+          <%= f.label :kms %><br>
+          <%= f.text_field :kms %>
+        </div>
+        <div class="smallfield">
+          <%= f.label :hours %><br>
+          <%= f.number_field :hours %>
+        </div>
+        <div class="smallfield">
+          <%= f.label :minutes %><br>
+          <%= f.number_field :minutes %>
+        </div>
+        <div class="smallfield">
+          <%= f.label :seconds %><br>
+          <%= f.number_field :seconds %>
+        </div>
+      </div>
+      <div class="formmiddle container ">
+        <div class="mediumfield">
+          <%= f.label :date %><br>
+          <%= f.date_select :date %>
+        </div>
+        <div class="normalfield">
+          <%= f.label :shoe %><br>
+          <% if @my_shoes.empty?%>
+            <%= f.label "No hay zapatillas" %>
+          <% else %>
+            <%= f.collection_select :shoe_id, @my_shoes, :id, :nombre, {prompt: "Selecciona"} %>  
+          <% end %>
+        </div>
+        <div class="normalfield">
+          <%= f.label :description %><br>
+         <!-- <%= f.select :description, ['CC','Series','Competición'] %>-->
+          <%= f.collection_select :description, Tipo.all, :nombre, :nombre, {prompt: "Selecciona el tipo"} %>
+        </div>
+      </div>
+
+      <div class="formdown container">
+        <div class="bigfield">
+          <%= f.label :comments %><br>
+          <%= f.text_area :comments %>
+        </div>
+        <div class="buttondown">
+          <%= f.submit %>
+        </div>
       </div>
     <% end %>
-    <div class="formup container">
-      <div class="smallfield">
-        <%= f.label :kms %><br>
-        <%= f.text_field :kms %>
-      </div>
-      <div class="smallfield">
-        <%= f.label :hours %><br>
-        <%= f.number_field :hours %>
-      </div>
-      <div class="smallfield">
-        <%= f.label :minutes %><br>
-        <%= f.number_field :minutes %>
-      </div>
-      <div class="smallfield">
-        <%= f.label :seconds %><br>
-        <%= f.number_field :seconds %>
-      </div>
-    </div>
-    <div class="formmiddle container ">
-      <div class="mediumfield">
-        <%= f.label :date %><br>
-        <%= f.date_select :date %>
-      </div>
-      <div class="normalfield">
-        <%= f.label :shoe %><br>
-        <% if @my_shoes.empty?%>
-          <%= f.label "No hay zapatillas" %>
-        <% else %>
-          <%= f.collection_select :shoe_id, @my_shoes, :id, :nombre, {prompt: "Selecciona"} %>  
-        <% end %>
-      </div>
-      <div class="normalfield">
-        <%= f.label :description %><br>
-       <!-- <%= f.select :description, ['CC','Series','Competición'] %>-->
-        <%= f.collection_select :description, Tipo.all, :nombre, :nombre, {prompt: "Selecciona el tipo"} %>
-      </div>
-    </div>
-
-    <div class="formdown container">
-      <div class="bigfield">
-        <%= f.label :comments %><br>
-        <%= f.text_area :comments %>
-      </div>
-      <div class="buttondown">
-        <%= f.submit %>
-      </div>
-    </div>
-  <% end %>
-</div> 
-<!-- fin formulario nuevo entrenamiento -->
+  </div> 
+  <!-- fin formulario nuevo entrenamiento -->
+<% end %>
 
 <div id="entrenosrunner" class="container">
   <% unless @trainings.empty? %>

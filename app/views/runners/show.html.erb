@@ -32,8 +32,6 @@
       <%= @runner.country %>
     </p>
 
-    <%= link_to 'Mis Zapatillas', runner_shoes_path(@runner) %>
-
     <% if @runner == current_runner %>
       <%= link_to 'Editar', edit_runner_path(current_runner) %>
       <%= link_to 'Cambia tu contraseña', edit_runner_registration_path %>
@@ -46,9 +44,7 @@
   <div id="sesiones" class="container">
     <div id="realizadas">
       <!-- Tengo un @total con las sesiones que no se meter en el link_to-->
-      <%= link_to "Entrenamientos", runner_trainings_path(@runner) %>
-      <p></p>
-      <h3>Zapatillas que usa: </h3>
+      <%= @total = @total.to_s; link_to "#{@total} Sesiones", runner_trainings_path(@runner) %>
       <h3>Récords personales</h3>
         <% if @records %>
           <ul>
@@ -60,6 +56,12 @@
           </ul>
         <% else %>
           <p>No records yet</p>
+        <% end %>
+        <!-- Enlace a las zapatillas -->
+        <% if @runner == current_runner %>
+          <%= link_to 'Mis Zapatillas', runner_shoes_path(@runner) %>
+        <% else %>
+          <%= link_to 'Sus Zapatillas', runner_shoes_path(@runner) %>
         <% end %>
     </div>
     <!-- fin realizadas -->  
