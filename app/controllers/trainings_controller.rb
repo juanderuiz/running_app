@@ -15,9 +15,7 @@ class TrainingsController < ApplicationController
   # GET /trainings
   # GET /trainings.json
   def index
-    #@trainings = Training.order('created_at DESC').limit(10)
-    #@trainings = Training.includes(:runner).order('created_at DESC').limit(10)
-    @trainings = @runner.trainings.limit(16).order(date: :desc) #esto no funciona si son del mismo dia
+    @trainings = @runner.trainings #.limit(16).order(date: :desc) #esto no funciona si son del mismo dia
     @training = Training.new
   end
 
@@ -25,17 +23,12 @@ class TrainingsController < ApplicationController
   # GET /trainings/1.json
   def show
     #Suficiente con el set_training en el before_action
-    #@training = Training.find(params[:id])
-    #@training = @runner.trainings.find(params[:id])
-    #@corredor = Runner.find(@training.runner_id)
-    #@corredor = @runner
-   # render :action => 'status'
   end
 
   # GET /trainings/new
   def new
-    @training = Training.new
-    redirect_to @runner
+    #@training = Training.new
+    #redirect_to @runner
   end
 
   # GET /trainings/1/edit
@@ -46,11 +39,13 @@ class TrainingsController < ApplicationController
   # POST /trainings.json
   def create
     @training = @runner.trainings.new(training_params)
-    set_time
+    @training.time = set_time(training_params) #calculate the total amount of seconds with hours, minutes and seconds
     respond_to do |format|
       if @training.save
-        set_kms
-        format.html { redirect_to runner_trainings_path, notice: 'Entrenamiento creado' }
+        if @training.shoe
+           @training.shoe.add_kms(@training.kms)
+        end
+        format.html { redirect_to runner_trainings_path, notice: '¡Entrenamiento creado!' }
         format.json { render action: 'show', status: :created, location: @training } #Esto hay que cambiarlo creo
       else
         format.html { render action: 'new' }
@@ -64,20 +59,26 @@ class TrainingsController < ApplicationController
   # PATCH/PUT /trainings/1.json
   def update
     #set_time
-    tiempoActual = @training.time
+    #tiempoActual = @training.time
     zapatillaAnterior = @training.shoe
-    kmsActual = @training.kms
+    if zapatillaAnterior
+      logger.info("Zapatilla Anterior!!!!!!!!!!!!")
+      logger.info(zapatillaAnterior.nombre)
+    end
+    kmsAnterior = @training.kms
+    @training.time = set_time(training_params)
     respond_to do |format|
       if @training.update(training_params)
-        tiempoNuevo = set_time #calculamos tiempo y actualizamos si cambió
-        if (tiempoNuevo != tiempoActual)
-          @training.update(training_params) 
+        logger.info("Zapatilla Nueva!!!!!!!!!!!!")
+        zapatillaNueva = @training.shoe
+        logger.info(zapatillaNueva.nombre)
+        zapatillaNueva.add_kms(@training.kms) #Sumo los kms a la nueva zapatilla y salvo
+        logger.info("Kilometros SUMADOS!!!!!!")
+        if zapatillaAnterior
+          zapatillaAnterior.subtract_kms(kmsAnterior) #Resto los kms del entreno anterior y salvo
+          logger.info("Kilometros RESTADOS!!!!!!")
         end
-        zapatillaEdit = @training.shoe
-        kmsEdit = @training.kms
-        actualizarKms(zapatillaAnterior,zapatillaEdit,kmsActual,kmsEdit)
-        format.html { redirect_to [@runner,@training], notice: 'Entreno actualizado!' }
-        #format.html { redirect_to [@zapatilla], notice: 'Arrr'}
+        format.html { redirect_to runner_trainings_path, notice: 'Entreno actualizado!' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -90,9 +91,8 @@ class TrainingsController < ApplicationController
   # DELETE /trainings/1.json
   def destroy
       if @training.destroy
-        if @shoe #por si el entrenamiento no tiene zapatilla registrada
-          @shoe.totalkms -= @training.kms#Quito los kms a la zapatilla
-          @shoe.save
+        if @shoe #si el entrenamiento tiene zapatilla registrada
+          @shoe.subtract_kms(@training.kms) #Quito los kms a la zapatilla
         end
       
         respond_to do |format|
@@ -125,13 +125,6 @@ class TrainingsController < ApplicationController
     def get_runner #también selecciona sus zapatillas disponibles
       @runner = Runner.find(params[:runner_id])
       @my_shoes = Shoe.where(runner_id: params[:runner_id])
-      #@my_shoes=[]
-      #all_shoes = Shoe.all
-      #all_shoes.each do |s|
-        #if (s.runner_id == @runner.id)
-          #@my_shoes.push(s) 
-        #end
-      #end
     end
 
     def actualizarKms(zAnt,zNueva,kmsAnt,kmsNuevos)
@@ -160,15 +153,9 @@ class TrainingsController < ApplicationController
       params.require(:training).permit(:kms, :time, :date, :runner_id, :shoe_id, :description, :comments, :hours, :minutes, :seconds)
     end
  
-    def set_time
-      @training.time = (@training.hours*3600)+(@training.minutes*60)+@training.seconds
+    def set_time(t)
+      #Calculate the amount of seconds
+      time = (t[:hours].to_i)*3600 + (t[:minutes].to_i)*60 + (t[:seconds].to_i)
     end
 
-    def set_kms
-      if @training.shoe
-        @shoe = Shoe.find(@training.shoe_id)
-        @shoe.totalkms += @training.kms
-        @shoe.save
-      end
-    end
 end

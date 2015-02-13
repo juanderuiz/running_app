@@ -13,16 +13,14 @@ class ShoesController < ApplicationController
   # GET /shoes
   # GET /shoes.json
   def index
-    @shoe = Shoe.new #para la nueva zapatilla
+    @shoe = Shoe.new 
     @shoes = @runner.shoes
   end
 
   # GET /shoes/1
   # GET /shoes/1.json
   def show
-    #@corredor = Runner.find(@shoe.runner_id)
-    @entrenamientos = Training.where(shoe_id: @shoe.id).order(date: :desc)
-    @totalentrenos = @entrenamientos.count
+    @entrenamientos = @runner.trainings.where(shoe_id: @shoe.id).order(date: :desc)
   end
 
   # GET /shoes/new
@@ -34,15 +32,11 @@ class ShoesController < ApplicationController
 
   # GET /shoes/1/edit
   def edit
-    #Aqui no pongo nada? En el Screencast de devise1 tiene codigo, ver 9:37
   end
 
   # POST /shoes
   # POST /shoes.json
   def create
-    #shoe_params[:runner_id] = current_runner.id #Cojo el id del runner logueado
-    #@shoe = Shoe.new(shoe_params)
-    #@shoe.runner_id = current_runner.id
     @shoe = @runner.shoes.new(shoe_params)   
 
     respond_to do |format|

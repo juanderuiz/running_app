@@ -119,19 +119,20 @@ form{
     float:left;
     width:90%;
     background-color:#664;
-    margin-bottom:5px;
-    margin-left:5px;
+    margin:0.5% auto;
     font-size: 16px;
   }
   #entrenamientos_zapatilla{
+    width:90%;
     display: none;
-    float:left;
+    margin:0 auto;
+    border:1px dotted blue;
     p{
-      margin-left:1.5%;
+      margin-left:1%;
       background-color:white;
-      width:21%;
+      width:22%;
       color:#111;
-      font-size:11px;
+      font-size:12px;
       text-align:center;
     }
   }
