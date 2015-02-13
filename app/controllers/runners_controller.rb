@@ -9,22 +9,16 @@ class RunnersController < ApplicationController
     @runners = Runner.all
   end
 
+  def trainings
+    @trainings = Training.where(:runner_id => @runner.id).order(date: :desc)
+  end  
+
   # GET /runners/1
   # GET /runners/1.json
   def show
-    @limite = 0
-    @sesiones = []
-    @total = 0
-    @entrenos = []
     if @runner
-      @limite = 10
-      @sesiones = Training.where(:runner_id => @runner.id).order(date: :desc)
-      @total = @sesiones.count(:all)
-      @entrenos = @sesiones.limit(@limite)
-      @age = ((Date.today - @runner.datebirth).to_f / 365).floor
-      #@entrenos = Training.where(:runner_id => @runner.id).limit(@limite)
+      @total = @trainings.count(:all)
     end
-    @training=Training.new #Para el formulario de Nuevo Entrenamiento en SHOW
   end
 
   # GET /runners/new
@@ -82,6 +76,8 @@ class RunnersController < ApplicationController
     def set_runner
       @runner = Runner.find_by_id(params[:id])
       @my_shoes = Shoe.where(runner_id: params[:id])
+      @trainings = @runner.trainings
+      @age = ((Date.today - @runner.datebirth).to_f / 365).floor
     end
 
     def get_records

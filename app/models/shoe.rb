@@ -15,7 +15,18 @@ class Shoe < ActiveRecord::Base
   # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
+  def add_kms(kms)
+    self.totalkms += kms
+    self.save
+  end
+
+  def subtract_kms(kms)
+    self.totalkms -= kms
+    self.save
+  end
+
   private
+
   def default_values
     self.totalkms ||= 0
   end

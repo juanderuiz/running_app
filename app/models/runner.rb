@@ -4,24 +4,23 @@ class Runner < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  #VALIDATIONS
 	validates :name, :presence => true, :length => {:minimum => 6}
 	validates :bio, :length => {:maximum => 140}
 	validates :email, :uniqueness => true
   validates :datebirth, :presence => true
-  #Falta chequear la edad mínima!
+  #Check the minimum age
   validate :at_least_18
 
-  def at_least_18
-    if self.datebirth
-      errors.add(:datebirth, 'Debes tener 18 años. Lo sentimos.') if self.datebirth > 18.years.ago.to_date
-      # Si tu edad de nacimiento es más 'moderna' que hoy más 18 años
-    end
-  end
 
+  #RELATIONSHIPS
 	has_many :trainings,  dependent: :destroy
   has_many :shoes, dependent: :destroy
 
-        #specify that the avatar is a paperclip file attachment
+  
+  #AVATAR
+  #specify that the avatar is a paperclip file attachment
   #specify additional styles that you want to use in views or eslewhere
   has_attached_file :avatar, :styles => {:thumb => "100x100>"}
   
@@ -39,4 +38,14 @@ class Runner < ActiveRecord::Base
       :thumb => "-gravity Center -crop 100x100+0+0",
     }
   }
+
+  private
+
+  def at_least_18
+    if self.datebirth
+      errors.add(:datebirth, 'Debes tener 18 años. Lo sentimos.') if self.datebirth > 18.years.ago.to_date
+      # Si tu edad de nacimiento es más 'moderna' que hoy más 18 años
+    end
+  end
+
 end
